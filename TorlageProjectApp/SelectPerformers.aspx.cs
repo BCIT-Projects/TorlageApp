@@ -13,5 +13,15 @@ namespace TorlageProjectApp
         {
 
         }
+
+        protected void ButtonGetDate_Click(object sender, EventArgs e)
+        {
+            TextBox1.Text = TextBox1.Text;
+        }
+
+        protected void Calendar1_SelectionChanged(object sender, EventArgs e)
+        {
+            TextBox1.Text = Calendar1.SelectedDate.ToString();
+        }
     }
 }
