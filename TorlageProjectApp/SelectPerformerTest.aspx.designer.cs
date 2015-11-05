@@ -10,7 +10,7 @@
 namespace TorlageProjectApp {
     
     
-    public partial class SelectPerformers {
+    public partial class SelectPerformerTest {
         
         /// <summary>
         /// form1 control.
@@ -67,31 +67,31 @@ namespace TorlageProjectApp {
         protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolderAvaliablePerformers;
         
         /// <summary>
-        /// SqlDataSourceAvailablePerformers control.
+        /// SqlDataSourceAvailablePerformersTest control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceAvailablePerformers;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceAvailablePerformersTest;
         
         /// <summary>
-        /// ListView2 control.
+        /// GridView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ListView2;
+        protected global::System.Web.UI.WebControls.GridView GridView1;
         
         /// <summary>
-        /// CheckBoxPerformerSelected control.
+        /// ButtonSelectPeople control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBoxPerformerSelected;
+        protected global::System.Web.UI.WebControls.Button ButtonSelectPeople;
         
         /// <summary>
         /// TextBoxAddPerformers control.
@@ -101,5 +101,41 @@ namespace TorlageProjectApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxAddPerformers;
+        
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
+        /// SqlDataSourceSetShowDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceSetShowDate;
+        
+        /// <summary>
+        /// TextBoxSetShowDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBoxSetShowDate;
+        
+        /// <summary>
+        /// ButtonSetShow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonSetShow;
     }
 }
