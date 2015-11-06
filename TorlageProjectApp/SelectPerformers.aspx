@@ -28,30 +28,36 @@
                     <div class ="Available Performers">
                        <asp:PlaceHolder ID="PlaceHolderAvaliablePerformers" runat="server">
                            <asp:SqlDataSource ID="SqlDataSourceAvailablePerformers" runat="server"
-                               ConnectionString="<%$ ConnectionStrings:TConnectionString %>" 
-                                SelectCommand="SELECT * FROM [PerformersAvailable] where ( ScheduleDate = @PerformeanceDate) AND (Available = 1)">
-                                <SelectParameters>
+                               ConnectionString="<%$ ConnectionStrings:ToConnectionString %>" 
+                                SelectCommand="SELECT PerformerName
+                                            FROM [PerformersAvailable] LEFT JOIN [Performers]
+                                            on PerformersAvailable.PerformerID = Performers.PerformerID
+                                            where ( ScheduleDate = @PerformeanceDate) AND (Available = 1)">
+
+                                    <SelectParameters>
                                     <asp:ControlParameter Name="PerformeanceDate" Type="String" 
                                         ControlID="TextboxShowDate" PropertyName="Text" />
                                 </SelectParameters>
-                           </asp:SqlDataSource>    
+
+                           </asp:SqlDataSource>
+
+
                         </asp:PlaceHolder>
-                        <asp:ListView ID="ListView2" runat="server" DataSourceID="SqlDataSourceAvailablePerformers" OnSelectedIndexChanged="ListView2_SelectedIndexChanged">                    
-                            
+                        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumn="False" DataKeyNames="PerformerName" DataSourceID="SqlDataSourceAvailablePerformers" >                    
+                            <Columns>
+                            <asp:TemplateField>
                             <ItemTemplate>
-                                <table>
-                                    <tr>
-                                        <td>
-                                            <asp:CheckBox ID="CheckBoxSelectPerformer" runat="server" /><%# Eval("PerformerName") %>
-                                        </td>
-                                   </tr>
-                                </table>
+                                            <asp:CheckBox ID="CheckBoxSelectPerformer" runat="server" /><!--<%# Eval("PerformerName") %>-->
+                                        
                             </ItemTemplate>
-                        </asp:ListView>
-                        <asp:CheckBox ID="CheckBoxPerformerSelected" runat="server" OnCheckedChanged="CheckBoxPerformerSelected_CheckedChanged" />
+                            </asp:TemplateField>         
+                            </Columns>
+                        </asp:GridView>
+                        <asp:Button ID="ButtonSelectPeople" runat="server" Text="Add Performers" OnClick="ButtonSelectPeople_Click" />
                    </div>
                 </td>
                 <!--end or List of Performers available-->
+
                 <td>       
                     <div class ="AddPerformers">
                         <asp:TextBox ID="TextBoxAddPerformers" runat="server" Height="253px"  Width="204px" Text="Add Performers" ReadOnly="True"></asp:TextBox>
@@ -59,6 +65,31 @@
                 </td>
 
             </tr>
+            <tr>
+                <td>
+                    <asp:Label ID="Label1" runat="server"  Text="Set Show Date For:" DataSourceID="SqlDataSourceSetShowDate"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <asp:SqlDataSource ID="SqlDataSourceSetShowDate" runat="server"
+                        ConnectionString="<%$ ConnectionStrings:ToConnectionString %>" 
+                                SelectCommand="SELECT * FROM [PerformersAvailable] where ( ScheduleDate = @PerformeanceDate) AND (Available = 1)">
+                        <SelectParameters>
+                            <asp:ControlParameter Name="PerformeanceDate" Type="String" 
+                            ControlID="TextBoxSetShowDate" PropertyName="Text" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:TextBox ID="TextBoxSetShowDate" runat="server" ></asp:TextBox>
+                </td>
+                
+            </tr>
+            <tr>
+                <td>
+                    <asp:Button ID="ButtonSetShow" runat="server" Text="Set Show Date" OnClick="ButtonSetShow_Click" />
+                </td>
+            </tr>
+
         </table>
     </div>
     </form>
