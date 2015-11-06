@@ -199,7 +199,6 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="SelectPerformers.aspx" />
-    <Content Include="SelectPerformerTest.aspx" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -317,13 +316,6 @@
     </Compile>
     <Compile Include="SelectPerformers.aspx.designer.cs">
       <DependentUpon>SelectPerformers.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SelectPerformerTest.aspx.cs">
-      <DependentUpon>SelectPerformerTest.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SelectPerformerTest.aspx.designer.cs">
-      <DependentUpon>SelectPerformerTest.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
