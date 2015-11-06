@@ -10,7 +10,7 @@
 namespace TorlageProjectApp {
     
     
-    public partial class SelectPerformers {
+    public partial class Director {
         
         /// <summary>
         /// form1 control.
@@ -22,31 +22,49 @@ namespace TorlageProjectApp {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// LabelDate control.
+        /// LabelSetShowDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelDate;
+        protected global::System.Web.UI.WebControls.Label LabelSetShowDate;
         
         /// <summary>
-        /// TextBoxShowDate control.
+        /// SqlDataSourceSetShowDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxShowDate;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceSetShowDate;
         
         /// <summary>
-        /// ButtonGetDate control.
+        /// TextBoxSetShowDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonGetDate;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxSetShowDate;
+        
+        /// <summary>
+        /// LabelShowOrNoShow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelShowOrNoShow;
+        
+        /// <summary>
+        /// LabelPerformersList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelPerformersList;
         
         /// <summary>
         /// CalendarShowDate control.
@@ -85,21 +103,21 @@ namespace TorlageProjectApp {
         protected global::System.Web.UI.WebControls.GridView GridView1;
         
         /// <summary>
-        /// ButtonSelectPeople control.
+        /// ButtonSetShow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonSelectPeople;
+        protected global::System.Web.UI.WebControls.Button ButtonSetShow;
         
         /// <summary>
-        /// TextBoxAddPerformers control.
+        /// ButtonRemoveSetShow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxAddPerformers;
+        protected global::System.Web.UI.WebControls.Button ButtonRemoveSetShow;
     }
 }

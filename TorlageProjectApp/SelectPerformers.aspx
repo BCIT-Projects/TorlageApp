@@ -65,30 +65,7 @@
                 </td>
 
             </tr>
-            <tr>
-                <td>
-                    <asp:Label ID="Label1" runat="server"  Text="Set Show Date For:" DataSourceID="SqlDataSourceSetShowDate"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:SqlDataSource ID="SqlDataSourceSetShowDate" runat="server"
-                        ConnectionString="<%$ ConnectionStrings:ToConnectionString %>" 
-                                SelectCommand="SELECT * FROM [PerformersAvailable] where ( ScheduleDate = @PerformeanceDate) AND (Available = 1)">
-                        <SelectParameters>
-                            <asp:ControlParameter Name="PerformeanceDate" Type="String" 
-                            ControlID="TextBoxSetShowDate" PropertyName="Text" />
-                        </SelectParameters>
-                    </asp:SqlDataSource>
-                    <asp:TextBox ID="TextBoxSetShowDate" runat="server" ></asp:TextBox>
-                </td>
-                
-            </tr>
-            <tr>
-                <td>
-                    <asp:Button ID="ButtonSetShow" runat="server" Text="Set Show Date" OnClick="ButtonSetShow_Click" />
-                </td>
-            </tr>
+            
 
         </table>
     </div>
