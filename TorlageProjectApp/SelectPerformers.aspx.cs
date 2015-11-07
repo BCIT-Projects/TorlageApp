@@ -69,6 +69,16 @@ namespace TorlageProjectApp
 
         }
 
+        protected void ButtonNextPage_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/CreateShowList");
+        }
+
+        protected void ButtonBackPage_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Director");
+        }
+
 
         
 
