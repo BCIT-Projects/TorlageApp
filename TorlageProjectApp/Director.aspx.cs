@@ -183,7 +183,7 @@ namespace TorlageProjectApp
             ArrayList usersFilled = new ArrayList();
             SqlConnection connection = new SqlConnection();   //establish an connection to the SQL server 
             connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
-            string selectCommand = "SELECT * FROM Performers WHERE Performers.Active = 1 AND NOT Exists(select PerformerID from PerformersAvailable where ScheduleDate ='" + TextBoxSetShowDate.Text + "')";
+            string selectCommand = "SELECT * FROM Performers WHERE Performers.Active = 1 AND PerformerID NOT IN (select PerformerID from PerformersAvailable where ScheduleDate ='" + TextBoxSetShowDate.Text + "')";
 
             SqlCommand command = new SqlCommand(selectCommand, connection);
 
@@ -255,6 +255,12 @@ namespace TorlageProjectApp
             command2.ExecuteNonQuery();
             connection2.Close();
             LabelShowOrNoShow.Text = "Not A Show";
+        }
+
+
+        protected void ButtonNextPage_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/SelectPerformers");
         }
 
     }

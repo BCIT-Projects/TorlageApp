@@ -58,6 +58,15 @@ namespace TorlageProjectApp {
         protected global::System.Web.UI.WebControls.Calendar CalendarShowDate;
         
         /// <summary>
+        /// LabelSelectTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelSelectTable;
+        
+        /// <summary>
         /// PlaceHolderAvaliablePerformers control.
         /// </summary>
         /// <remarks>
@@ -94,6 +103,15 @@ namespace TorlageProjectApp {
         protected global::System.Web.UI.WebControls.Button ButtonSelectPeople;
         
         /// <summary>
+        /// LabelDescriptionPerformersShedule control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelDescriptionPerformersShedule;
+        
+        /// <summary>
         /// TextBoxAddPerformers control.
         /// </summary>
         /// <remarks>
@@ -101,5 +119,23 @@ namespace TorlageProjectApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxAddPerformers;
+        
+        /// <summary>
+        /// ButtonBackPage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonBackPage;
+        
+        /// <summary>
+        /// ButtonNextPage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonNextPage;
     }
 }
