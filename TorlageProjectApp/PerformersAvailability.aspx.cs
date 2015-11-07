@@ -19,7 +19,8 @@ namespace TorlageProjectApp
 
         protected void CalendarChangeAvailability_SelectionChanged(object sender, EventArgs e)
         {
-            TextBoxChangeAvailability.Text = CalendarChanageAvailability.SelectedDate.ToString();
+            
+            TextBoxChangeAvailability.Text = CalendarChanageAvailability.SelectedDate.ToShortDateString();
             LabelUserAlreadyClickedAvailability.Text = "";
             //establish an connection to the SQL server 
             SqlConnection connection = new SqlConnection();
@@ -60,7 +61,7 @@ namespace TorlageProjectApp
             reader.Close();
             connection.Close();
         }
-
+        
         protected void ButtonYes_Click(object sender, EventArgs e)
         {
             bool foundRecordOnDate = false;
@@ -134,7 +135,7 @@ namespace TorlageProjectApp
                 //establish an connection to the SQL server 
                 SqlConnection connection4 = new SqlConnection();
                 connection4.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
-                string selectQueryForUserName = "(SELECT PerformerID FROM Performers WHERE PerformerName = '" + TextBoxUser.Text + "')";
+                string selectQueryForUserName = "(SELECT PerformerID FROM Performers WHERE PerformerName = '" + TextBoxUser.Text + "'  AND Performers.Active = 1)";
                 string insertCommand = "INSERT INTO PerformersAvailable (ScheduleDate, PerformerID, Available, TentativeShow) VALUES('" + TextBoxChangeAvailability.Text + "', "
                     + selectQueryForUserName + ", 1, 0)";
                 SqlCommand command4 = new SqlCommand(insertCommand, connection4);
@@ -220,7 +221,7 @@ namespace TorlageProjectApp
                 //establish an connection to the SQL server 
                 SqlConnection connection4 = new SqlConnection();
                 connection4.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
-                string selectQueryForUserName = "(SELECT PerformerID FROM Performers WHERE PerformerName = '" + TextBoxUser.Text + "')";
+                string selectQueryForUserName = "(SELECT PerformerID FROM Performers WHERE PerformerName = '" + TextBoxUser.Text + "' AND Performers.Active = 1)";
                 string insertCommand = "INSERT INTO PerformersAvailable (ScheduleDate, PerformerID, Available, TentativeShow) VALUES('" + TextBoxChangeAvailability.Text + "', "
                     + selectQueryForUserName + ", 0, 0)";
                 SqlCommand command4 = new SqlCommand(insertCommand, connection4);
