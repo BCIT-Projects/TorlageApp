@@ -10,96 +10,123 @@
 namespace TorlageProjectApp {
     
     
-    public partial class SelectPerformers {
+    public partial class PerformersAvailability {
         
         /// <summary>
-        /// form1 control.
+        /// form2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form2;
         
         /// <summary>
-        /// LabelDate control.
+        /// LableUser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelDate;
+        protected global::System.Web.UI.WebControls.Label LableUser;
         
         /// <summary>
-        /// TextBoxShowDate control.
+        /// RequiredFieldValidator1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxShowDate;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
-        /// ButtonGetDate control.
+        /// TextBoxUser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonGetDate;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxUser;
         
         /// <summary>
-        /// CalendarShowDate control.
+        /// LabelInstructions control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar CalendarShowDate;
+        protected global::System.Web.UI.WebControls.Label LabelInstructions;
         
         /// <summary>
-        /// PlaceHolderAvaliablePerformers control.
+        /// TextBoxChangeAvailability control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolderAvaliablePerformers;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxChangeAvailability;
         
         /// <summary>
-        /// SqlDataSourceAvailablePerformers control.
+        /// CalendarChanageAvailability control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceAvailablePerformers;
+        protected global::System.Web.UI.WebControls.Calendar CalendarChanageAvailability;
         
         /// <summary>
-        /// GridView1 control.
+        /// SqlTorlageDatabase control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlTorlageDatabase;
         
         /// <summary>
-        /// ButtonSelectPeople control.
+        /// LabelChooseAvailable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonSelectPeople;
+        protected global::System.Web.UI.WebControls.Label LabelChooseAvailable;
         
         /// <summary>
-        /// TextBoxAddPerformers control.
+        /// ButtonYes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxAddPerformers;
+        protected global::System.Web.UI.WebControls.Button ButtonYes;
+        
+        /// <summary>
+        /// ButtonNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonNo;
+        
+        /// <summary>
+        /// LabelUserAlreadyClickedAvailability control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelUserAlreadyClickedAvailability;
+        
+        /// <summary>
+        /// Button1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button1;
     }
 }
