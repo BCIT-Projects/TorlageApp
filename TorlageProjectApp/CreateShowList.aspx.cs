@@ -13,5 +13,15 @@ namespace TorlageProjectApp
         {
 
         }
+
+        protected void ButtonNextPage_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/ReviewShowList");
+        }
+
+        protected void ButtonBackPage_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/SelectPerformers");
+        }
     }
 }

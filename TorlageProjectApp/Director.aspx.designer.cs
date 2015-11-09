@@ -49,6 +49,33 @@ namespace TorlageProjectApp {
         protected global::System.Web.UI.WebControls.TextBox TextBoxSetShowDate;
         
         /// <summary>
+        /// CalendarShowDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Calendar CalendarShowDate;
+        
+        /// <summary>
+        /// ButtonSetShow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonSetShow;
+        
+        /// <summary>
+        /// ButtonRemoveSetShow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonRemoveSetShow;
+        
+        /// <summary>
         /// LabelShowOrNoShow control.
         /// </summary>
         /// <remarks>
@@ -56,6 +83,15 @@ namespace TorlageProjectApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelShowOrNoShow;
+        
+        /// <summary>
+        /// LabelError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelError;
         
         /// <summary>
         /// LabelPerformersList control.
@@ -67,13 +103,13 @@ namespace TorlageProjectApp {
         protected global::System.Web.UI.WebControls.Label LabelPerformersList;
         
         /// <summary>
-        /// CalendarShowDate control.
+        /// LabelNoPerformerList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar CalendarShowDate;
+        protected global::System.Web.UI.WebControls.Label LabelNoPerformerList;
         
         /// <summary>
         /// PlaceHolderAvaliablePerformers control.
@@ -94,30 +130,48 @@ namespace TorlageProjectApp {
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceAvailablePerformers;
         
         /// <summary>
-        /// GridView1 control.
+        /// GridViewAvailable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.GridView GridViewAvailable;
         
         /// <summary>
-        /// ButtonSetShow control.
+        /// PlaceHolderNotAvailable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonSetShow;
+        protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolderNotAvailable;
         
         /// <summary>
-        /// ButtonRemoveSetShow control.
+        /// SqlDataSourceNotAvailable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonRemoveSetShow;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceNotAvailable;
+        
+        /// <summary>
+        /// GridViewNotAvailable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewNotAvailable;
+        
+        /// <summary>
+        /// ButtonNextPage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonNextPage;
     }
 }

@@ -54,19 +54,32 @@ namespace TorlageProjectApp
         /// <param name="e"></param>
         protected void ButtonSelectPeople_Click(object sender, EventArgs e)
         {
-            TextBoxAddPerformers.Text = "";
-            foreach (GridViewRow row in GridView1.Rows)
+            LabelAddPerformers.Text = "";
+            foreach (GridViewRow row in GridViewAvailablePerform.Rows)
             {
                 CheckBox checkbox = (CheckBox)row.FindControl("CheckBoxSelectPerformer");
                 if (checkbox.Checked)
                 {
+                    int performerID = Convert.ToInt32(GridViewAvailablePerform.DataKeys[row.RowIndex].Values["PerformerID"]);
                     // Retreive the Performer Name
-                    string Performer = (String)GridView1.DataKeys[row.RowIndex].Value;
+                    string Performer = (String)(GridViewAvailablePerform.DataKeys[row.RowIndex].Values["PerformerName"]);
+                    // Retreive the Employee ID
+                    
                     //int PerformerName = Convert.ToInt32(GridView1.DataKeys[row.RowIndex].Value);
-                    TextBoxAddPerformers.Text += Performer + ", " + "\r\n";
+                    LabelAddPerformers.Text += Performer + ", "+performerID.ToString() + "<br>";
                 }
             }
 
+        }
+
+        protected void ButtonNextPage_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/CreateShowList");
+        }
+
+        protected void ButtonBackPage_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Director");
         }
 
 
