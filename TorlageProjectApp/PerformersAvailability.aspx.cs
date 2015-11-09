@@ -58,8 +58,11 @@ namespace TorlageProjectApp
             {
                 LabelUserAlreadyClickedAvailability.Text = "Caught Exception " + ex.ToString();
             }
-            reader.Close();
-            connection.Close();
+            finally
+            {
+                reader.Close();
+                connection.Close();
+            }
         }
         
         protected void ButtonYes_Click(object sender, EventArgs e)
@@ -105,9 +108,11 @@ namespace TorlageProjectApp
             {
                 LabelUserAlreadyClickedAvailability.Text = "Caught Exception " + ex.ToString();
             }
-
-            reader.Close();
-            connection.Close();
+            finally
+            {
+                reader.Close();
+                connection.Close();
+            }
 
             if (foundRecordOnDate && !available)
             {
@@ -191,8 +196,11 @@ namespace TorlageProjectApp
                 LabelUserAlreadyClickedAvailability.Text = "Caught Exception " + ex.ToString();
             }
 
-            reader.Close();
-            connection.Close();
+            finally
+            {
+                reader.Close();
+                connection.Close();
+            }
 
             if (foundRecordOnDate && available)
             {
@@ -232,6 +240,105 @@ namespace TorlageProjectApp
 
             LabelUserAlreadyClickedAvailability.Text = "You entered that you were not available. Are you available?";
 
+        }
+
+        protected void CalendarChanageAvailability_DayRender(object sender, DayRenderEventArgs e)
+        {
+            string defaultUser = "Emma";
+            if(TextBoxUser.Text == "")
+            {
+                defaultUser = "Emma";
+            } else
+            {
+                defaultUser = TextBoxUser.Text;
+            }
+            bool availability = false;
+            bool tentativeshowDate = false;
+
+            // Display not available in red
+            Style notavailableStyle = new Style();
+            notavailableStyle.BackColor = System.Drawing.Color.Red;
+
+            // Display available days in green
+            Style availableStyle = new Style();
+            availableStyle.BackColor = System.Drawing.Color.Green;
+
+            // Display a blue border for the tentativeshowdate
+            Style showdateStyle = new Style();
+            showdateStyle.BorderColor = System.Drawing.Color.Blue;
+            showdateStyle.BorderWidth = 6;
+
+
+            //establish an connection to the SQL server 
+            SqlConnection connection = new SqlConnection();
+            connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
+            string selectCommand = "SELECT PerformersAvailable.AvailableID, Performers.PerformerName, PerformersAvailable.ScheduleDate, " +
+                "PerformersAvailable.Available, PerformersAvailable.TentativeShow " +
+                "FROM PerformersAvailable " +
+                "INNER JOIN Performers " +
+                "ON PerformersAvailable.PerformerID = Performers.PerformerID " +
+                "WHERE Performers.PerformerName = '"
+                + defaultUser + "'";
+            SqlCommand command = new SqlCommand(selectCommand, connection);
+            connection.Open();
+            SqlDataReader reader = null;
+            try
+            {
+                reader = command.ExecuteReader();
+
+
+                while (reader.Read())
+                {
+                    DateTime dateTime = (DateTime)reader["ScheduleDate"];
+                    byte value = (byte)reader["Available"];
+                    byte value2 = (byte)reader["TentativeShow"];
+                    if (value == 1)
+                    {
+                        availability = true;
+                    }
+                    else
+                    {
+                        availability = false;
+                    }
+
+                    if (value2 == 1)
+                    {
+                        tentativeshowDate = true;
+                    }
+                    else
+                    {
+                        tentativeshowDate = false;
+                    }
+
+                    // do this somehow
+                    if ((e.Day.Date >= new DateTime(dateTime.Year, dateTime.Month, dateTime.Day)) &&
+                        (e.Day.Date <= new DateTime(dateTime.Year, dateTime.Month, dateTime.Day)))
+                    {
+                        if (availability)
+                        {
+                            e.Cell.ApplyStyle(availableStyle);
+                        }
+                        else if (!availability)
+                        {
+                            e.Cell.ApplyStyle(notavailableStyle);
+                        }
+                        if (tentativeshowDate)
+                        {
+                            e.Cell.ApplyStyle(showdateStyle);
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                LabelUserAlreadyClickedAvailability.Text = "Caught Exception " + ex.ToString();
+            }
+            finally
+            {
+                reader.Close();
+                connection.Close();
+            }
         }
     }
 
