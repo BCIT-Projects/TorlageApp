@@ -9,11 +9,78 @@
     <style type="text/css">
 
 body {
+    margin: auto;
+    width: 100%;
     background-color: #6f8ef5;
     margin: 0;
     font-family: Arial;
 
-}    
+}  
+
+#DirectorPages{
+    width: 540px;
+    height: 650px;
+    margin: auto;
+    border:3px solid black;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+#navbar-director{
+    width:550px;
+    height: 50px;
+    margin: auto;
+}
+#navbar-director ul {
+    display: block;
+    list-style-type: disc;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+     -webkit-padding-start: 0px;
+}
+
+#navbar-director ul li { display: inline; 
+
+}
+
+#navbar-director ul li a
+{
+text-decoration: none;
+padding: .2em 1em;
+color: #fff;
+background-color: #036;
+}
+
+#navbar-director ul li a:hover
+{
+color: #fff;
+background-color: #369;
+}
+
+.NumbersPlaceholder{
+     height: 230px;
+    width: 170px;
+    border-style: solid;
+    border-color:black;
+    padding:5px;
+    background-color:#EEEEEE;
+}
+
+.SetListPlaceholder{
+     height: 230px;
+    width: 170px;
+    border-style: solid;
+    border-color:black;
+    padding:5px;
+    background-color:#EEEEEE;
+}
+
+
+
+
         .auto-style1 {
             height: 99px;
             width: 279px;
@@ -27,17 +94,18 @@ body {
     </style>
 </head>
 <body>
-    <div>
+    
+    <form id="form1" runat="server">
+        <div id ="DirectorPages">
+            <div id="navbar-director">
             <ul>
-                <li><a runat="server" href="~/Director">Set Show Date</a></li>
+               <!-- <li><a runat="server" href="~/Director">Set Show Date</a></li>
+                -->
                 <li><a runat="server" href="~/SelectPerformers">Select Performers</a></li>
                 <li><a runat="server" href="~/CreateShowList">Create Show List</a></li>
                 <li><a runat="server" href="~/ReviewShowList">Review Show List</a></li>
             </ul>
-        </div>
-    <form id="form1" runat="server">
-    <div>
-
+            </div>
         
     
         <table>
@@ -73,17 +141,32 @@ body {
                 </td>
             </tr>
             <tr>
+                <td>
+                    <asp:Label ID="LabelNumbersSelect" runat="server" Text="Select Numbers"></asp:Label>
+
+                </td>
+
+                <td>
+                    <asp:Label ID="LabelInShow" runat="server" Text="Numbers In The Show"></asp:Label>
+
+                </td>    
+            </tr>
+            <tr>
 
 
                 
-                <td class="auto-style1">
+                <td>
+                    <div class="NumbersPlaceholder">
                     <asp:PlaceHolder ID="PlaceHolderNumbers" runat="server"></asp:PlaceHolder>
                     <asp:Label ID="LabelNumbersDescription" runat="server" Text="Numbers to Select"></asp:Label>
+                    </div>
                 </td>
 
-                <td class="auto-style3">
+                <td>
+                    <div class="SetListPlaceholder">
                     <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
                      <asp:Label ID="LabelSelectedNumDescription" runat="server" Text="Numbers Selected"></asp:Label>
+                    </div>
                 </td>
                 
             </tr>

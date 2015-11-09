@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 namespace TorlageProjectApp
 {
     public partial class Director : System.Web.UI.Page
@@ -110,6 +111,8 @@ namespace TorlageProjectApp
         {
 
             TextBoxSetShowDate.Text = CalendarShowDate.SelectedDate.ToString();
+            ButtonSetShow.Visible = true;
+            ButtonRemoveSetShow.Visible = true;
             LabelShowOrNoShow.Text = "No Show";
             byte showExists = 0;
 
@@ -131,7 +134,7 @@ namespace TorlageProjectApp
 
                     if (showExists == 1)
                     {
-                        LabelShowOrNoShow.Text = "Is a Show";
+                        LabelShowOrNoShow.Text = "Show is Set";
                         showExists = 0; //reset to no show
                     }
                     else
@@ -142,8 +145,7 @@ namespace TorlageProjectApp
                     //showExists = (byte)Session["ExistanceofShow"];
                 }
 
-                reader.Close();
-                connection.Close();
+                
 
             }
 
@@ -152,6 +154,10 @@ namespace TorlageProjectApp
             {
                 ;
 
+            }
+            finally {
+                reader.Close();
+                connection.Close();
             }
 
         }
@@ -163,104 +169,135 @@ namespace TorlageProjectApp
         /// <param name="e"></param>
         protected void ButtonSetShow_Click(object sender, EventArgs e)
         {
-
-            SqlConnection connection2 = new SqlConnection();
-            connection2.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
-            string updateCommand = "UPDATE PerformersAvailable " +
-                "SET TentativeShow = 1 " +
-                "FROM PerformersAvailable " +
-                "WHERE ScheduleDate = '" + TextBoxSetShowDate.Text + "'";
-            SqlCommand command2 = new SqlCommand(updateCommand, connection2);
-            connection2.Open();
-            command2.ExecuteNonQuery();
-            connection2.Close();
-            LabelShowOrNoShow.Text = "Is A Show";
-
-
-
-            //---------------Pull out all the performer Names Note might need to change the Name to id
-            ArrayList users = new ArrayList();
-            ArrayList usersFilled = new ArrayList();
-            SqlConnection connection = new SqlConnection();   //establish an connection to the SQL server 
-            connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
-            string selectCommand = "SELECT * FROM Performers WHERE Performers.Active = 1 AND PerformerID NOT IN (select PerformerID from PerformersAvailable where ScheduleDate ='" + TextBoxSetShowDate.Text + "')";
-
-            SqlCommand command = new SqlCommand(selectCommand, connection);
-
-            connection.Open();
-            SqlDataReader reader = null;
-            try
+            if (TextBoxSetShowDate.Text.ToString() != "")
             {
-                reader = command.ExecuteReader();
-                while (reader.Read())
+                SqlConnection connection2 = new SqlConnection();
+                connection2.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
+                string updateCommand = "UPDATE PerformersAvailable " +
+                    "SET TentativeShow = 1 " +
+                    "FROM PerformersAvailable " +
+                    "WHERE ScheduleDate = '" + TextBoxSetShowDate.Text + "'";
+                SqlCommand command2 = new SqlCommand(updateCommand, connection2);
+                connection2.Open();
+                command2.ExecuteNonQuery();
+                connection2.Close();
+                LabelShowOrNoShow.Text = "Show is Set";
+
+
+
+                //---------------Pull out all the performer Names Note might need to change the Name to id
+                ArrayList users = new ArrayList();
+                ArrayList usersFilled = new ArrayList();
+                SqlConnection connection = new SqlConnection();   //establish an connection to the SQL server 
+                connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
+                string selectCommand = "SELECT * FROM Performers WHERE Performers.Active = 1 AND PerformerID NOT IN (select PerformerID from PerformersAvailable where ScheduleDate ='" + TextBoxSetShowDate.Text + "')";
+
+                SqlCommand command = new SqlCommand(selectCommand, connection);
+
+                connection.Open();
+                SqlDataReader reader = null;
+                try
                 {
-                    users.Add((int)reader["PerformerId"]);
-                    //string value = (string)reader["PerformerName"];
-                    //Label1.Text += value;
+                    reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        users.Add((int)reader["PerformerId"]);
+                        //string value = (string)reader["PerformerName"];
+                        //Label1.Text += value;
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Button Set Show Click Failed");
                 }
 
+
+                finally
+                {
+                    reader.Close();
+                    connection.Close();
+                }
+                //----------------end of how to pull out the performers' names (or id for future)
+
+                //a way to add a row
+
+                SqlConnection cnn = new SqlConnection();
+                cnn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
+                cnn.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "SELECT * From PerformersAvailable Where ScheduleDate = '" + TextBoxSetShowDate.Text + "'";
+                cmd.Connection = cnn;
+                SqlDataAdapter da = new SqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataSet ds = new DataSet();
+                da.Fill(ds, "PerformersAvailable");
+                SqlCommandBuilder cb = new SqlCommandBuilder(da);
+
+                foreach (int entry in users)
+                {
+
+                    DataRow drow = ds.Tables["PerformersAvailable"].NewRow();
+                
+                        drow["ScheduleDate"] = TextBoxSetShowDate.Text;
+                        drow["PerformerID"] = entry;
+                        drow["Available"] = "1";
+                        drow["TentativeShow"] = "1";
+                        ds.Tables["PerformersAvailable"].Rows.Add(drow);
+                        da.Update(ds, "PerformersAvailable");
+                
+
+                }
+                cnn.Close();
+                
             }
-            catch (Exception ex)
+            else
             {
-                Console.WriteLine("Button Set Show Click Failed"); 
+                LabelShowOrNoShow.Text = "Must enter a Date";
+                LabelError.Text =  "select another date on the calendar \n re-select desired date";
             }
-
-               
-
-            reader.Close();
-            connection.Close();
-            //----------------end of how to pull out the performers' names (or id for future)
-
-            //a way to add a row
-
-            SqlConnection cnn = new SqlConnection();
-            cnn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
-            cnn.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT * From PerformersAvailable Where ScheduleDate = '" + TextBoxSetShowDate.Text + "'";
-            cmd.Connection = cnn;
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataSet ds = new DataSet();
-            da.Fill(ds, "PerformersAvailable");
-            SqlCommandBuilder cb = new SqlCommandBuilder(da);
-
-            foreach (int entry in users)
-            {
-
-                DataRow drow = ds.Tables["PerformersAvailable"].NewRow();
-                drow["ScheduleDate"] = TextBoxSetShowDate.Text;
-                drow["PerformerID"] = entry;
-                drow["Available"] = "1";
-                drow["TentativeShow"] = "1";
-                ds.Tables["PerformersAvailable"].Rows.Add(drow);
-                da.Update(ds, "PerformersAvailable");
-
-            }
-            cnn.Close();
-
         }
 
         protected void ButtonRemoveSetShow_Click(object sender, EventArgs e)
         {
-
-            SqlConnection connection2 = new SqlConnection();
-            connection2.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
-            string updateCommand = "UPDATE PerformersAvailable " +
-                "SET TentativeShow = 0 " +
-                "FROM PerformersAvailable " +
-                "WHERE ScheduleDate = '" + TextBoxSetShowDate.Text + "'";
-            SqlCommand command2 = new SqlCommand(updateCommand, connection2);
-            connection2.Open();
-            command2.ExecuteNonQuery();
-            connection2.Close();
-            LabelShowOrNoShow.Text = "Not A Show";
+            if (TextBoxSetShowDate.Text.ToString() != "")
+            {
+                SqlConnection connection2 = new SqlConnection();
+                connection2.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
+                string updateCommand = "UPDATE PerformersAvailable " +
+                    "SET TentativeShow = 0 " +
+                    "FROM PerformersAvailable " +
+                    "WHERE ScheduleDate = '" + TextBoxSetShowDate.Text + "'";
+                SqlCommand command2 = new SqlCommand(updateCommand, connection2);
+                connection2.Open();
+                command2.ExecuteNonQuery();
+                connection2.Close();
+                LabelShowOrNoShow.Text = "No Show";
+            }
+            else
+            {
+                LabelShowOrNoShow.Text = "Must enter a Date";
+                LabelError.Text = "Select another date on the calendar \n re-select desired date";
+            }
         }
 
 
         protected void ButtonNextPage_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/SelectPerformers");
+        }
+
+        protected void TextBoxSetShowDate_TextChanged(object sender, EventArgs e)
+        {
+            string test = TextBoxSetShowDate.Text;
+            //MessageBox.Show("Hi");
+
+            if (TextBoxSetShowDate.Text == "null")
+            {
+                ButtonRemoveSetShow.Visible = false;
+                ButtonSetShow.Visible = true;
+                LabelShowOrNoShow.Text = "";
+            }
         }
 
     }
