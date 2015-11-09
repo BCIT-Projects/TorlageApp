@@ -94,6 +94,24 @@ namespace TorlageProjectApp {
         protected global::System.Web.UI.WebControls.Button ButtonDancer;
         
         /// <summary>
+        /// LabelNumbersSelect control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelNumbersSelect;
+        
+        /// <summary>
+        /// LabelInShow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelInShow;
+        
+        /// <summary>
         /// PlaceHolderNumbers control.
         /// </summary>
         /// <remarks>
