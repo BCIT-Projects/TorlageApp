@@ -103,7 +103,7 @@ background-color: #369;
         <div id="navbar-director">
             <ul>
                 <li><a runat="server" href="~/Director">Set Show Date</a></li>
-                <li><a runat="server" href="~/SelectPerformers">Select Performers</a></li>
+                <li><a runat="server" href="~/SelectPerformers">Create A Show</a></li>
            <!-- <li><a runat="server" href="~/CreateShowList">Create Show List</a></li>
                 <li><a runat="server" href="~/ReviewShowList">Review Show List</a></li>
             -->
@@ -111,10 +111,7 @@ background-color: #369;
         </div>
         <div class ="CalandarBackGround">
         <table>
-            <tr>
-
-
-            </tr>
+            
             <tr>
                 <td>
                 <asp:Label ID="LabelDate" runat="server" Text="Date: "></asp:Label>
@@ -167,8 +164,15 @@ background-color: #369;
             </tr>
         </table>
         </div>
+        
         <div class ="SelectPerformers">
         <table >
+            <tr>
+                <td>
+                    <asp:Label ID="LabelTitleName" runat="server" Text="Select Performers" Font-Bold="True" Font-Size="Large" Height="20px"></asp:Label>
+                </td>
+
+            </tr>
             <tr>
                 <td class ="PeopleLable"><asp:Label ID="LabelSelectTable" runat="server" Text="Performers Available"></asp:Label></td>
                 <td></td>

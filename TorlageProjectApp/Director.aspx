@@ -95,7 +95,7 @@ td{
         <div id="navbar-director">
             <ul>
                 <li><a runat="server" href="~/Director">Set Show Date</a></li>
-                <li><a runat="server" href="~/SelectPerformers">Select Performers</a></li>
+                <li><a runat="server" href="~/SelectPerformers">Create A Show</a></li>
           <!--      <li><a runat="server" href="~/CreateShowList">Create Show List</a></li>
                 <li><a runat="server" href="~/ReviewShowList">Review Show List</a></li>
             -->
