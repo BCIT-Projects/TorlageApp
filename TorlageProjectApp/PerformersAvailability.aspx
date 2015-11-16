@@ -23,14 +23,14 @@
             <div id="top">
                 <asp:TextBox ID="TextBoxUser" runat="server" Style="float:right;" ></asp:TextBox>
                 <asp:Label ID="LableUser" runat="server" Text="User:" Style="font-size:large; float:right;" ></asp:Label>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBoxUser" ErrorMessage="RequiredFieldValidator"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBoxUser" ErrorMessage="Must enter your username."></asp:RequiredFieldValidator>
                 <div class="spacer"></div>
                 <div class="spacer"></div>
             </div>
 
 
             <div id="instructions">
-                <asp:Label ID="LabelInstructions" runat="server" Text="Pick a date on the calender. Click 'Yes' or 'No' button below to say if available on that date."></asp:Label>
+                <asp:Label ID="LabelInstructions" runat="server" Text="Pick a date on the calender. Click 'Available' or 'Not Available' button below to say if available on that date."></asp:Label>
             </div>
 
             <div id="calendar">
@@ -44,9 +44,9 @@
             </asp:SqlDataSource>
             <div class="spacer"></div>
             <div>
-            <asp:Label ID="LabelChooseAvailable" runat="server" Text="Are you available?"></asp:Label>
-            <asp:Button ID="ButtonYes" runat="server" Text="Yes" OnClick="ButtonYes_Click" />
-            <asp:Button ID="ButtonNo" runat="server" Text="No" OnClick="ButtonNo_Click" />
+            <asp:Label ID="LabelChooseAvailable" runat="server"></asp:Label>
+            <asp:Button ID="ButtonYes" runat="server" Text="Available" OnClick="ButtonYes_Click" />
+            <asp:Button ID="ButtonNo" runat="server" Text="Not Available" OnClick="ButtonNo_Click" />
             <div class="spacer"></div>
             <asp:Label ID="LabelUserAlreadyClickedAvailability" runat="server" DataSourceID="SqlTorlageDatabase"></asp:Label>
             </div>
