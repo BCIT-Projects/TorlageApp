@@ -45,11 +45,11 @@ namespace TorlageProjectApp
                     byte value = (byte)reader["Available"];
                     if (value == 1)
                     {
-                        LabelUserAlreadyClickedAvailability.Text = "You already entered that you were available. Are you available?";
+                        //LabelUserAlreadyClickedAvailability.Text = "You already entered that you were available. Are you available?";
                     }
                     else
                     {
-                        LabelUserAlreadyClickedAvailability.Text = "You already entered that you were not available. Are you available?";
+                        //LabelUserAlreadyClickedAvailability.Text = "You already entered that you were not available. Are you available?";
                     }
                 }
 
@@ -149,7 +149,7 @@ namespace TorlageProjectApp
                 connection4.Close();
             }
 
-            LabelUserAlreadyClickedAvailability.Text = "You entered that you were available. Are you available?";
+            //LabelUserAlreadyClickedAvailability.Text = "You entered that you were available. Are you available?";
         }
 
         protected void ButtonNo_Click(object sender, EventArgs e)
@@ -238,7 +238,7 @@ namespace TorlageProjectApp
                 connection4.Close();
             }
 
-            LabelUserAlreadyClickedAvailability.Text = "You entered that you were not available. Are you available?";
+            //LabelUserAlreadyClickedAvailability.Text = "You entered that you were not available. Are you available?";
 
         }
 
