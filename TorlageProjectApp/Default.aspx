@@ -4,6 +4,12 @@
 
     
 
-    </div>
+  
+
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ToConnectionString %>" SelectCommand="SELECT * FROM [Performers]"></asp:SqlDataSource>
+
+    
+
+  
 
 </asp:Content>
