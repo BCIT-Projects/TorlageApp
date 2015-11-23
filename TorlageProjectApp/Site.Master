@@ -79,8 +79,9 @@
                             </li>
                         <li>
                             <asp:Panel id="Director" runat="server" Visible="True">
-                                <a runat="server" href="~/Director" style="color:#AAA; text-decoration:none;" onMouseOver="this.style.color='#FFF'" onMouseOut="this.style.color='#AAA'">Director</a>
-                                <a runat="server" href="~/ManageRoles" style="color:#AAA; text-decoration:none;" onMouseOver="this.style.color='#FFF'" onMouseOut="this.style.color='#AAA'">Manage New Performers</a>
+                                <a runat="server" href="~/DirectorShow" style="color:#AAA; text-decoration:none;" onMouseOver="this.style.color='#FFF'" onMouseOut="this.style.color='#AAA'">Director</a>
+                                <a runat="server" href="~/ManagePerformers" style="color:#AAA; text-decoration:none;" onMouseOver="this.style.color='#FFF'" onMouseOut="this.style.color='#AAA'">Manage Performers</a>
+                                <a runat="server" href="~/ManageRoles" style="color:#AAA; text-decoration:none;" onMouseOver="this.style.color='#FFF'" onMouseOut="this.style.color='#AAA'">New Performers</a>
                             </asp:Panel>
                         </li>
                         

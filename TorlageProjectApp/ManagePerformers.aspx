@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManageRoles.aspx.cs" Inherits="TorlageProjectApp.ManageRoles" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManagePerformers.aspx.cs" Inherits="TorlageProjectApp.ManagePerformers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
+    
     <table>
                 <tr>
                 <!--List of performers available-->
@@ -9,20 +9,15 @@
                        <asp:PlaceHolder ID="UsersAvaliable" runat="server">
                            <asp:SqlDataSource ID="AllUsersAvailable" runat="server"
                                ConnectionString="<%$ ConnectionStrings:ToConnectionString %>" 
-                                SelectCommand="SELECT Id, UserName, RoleId
-                                            FROM [AspNetUsers] Left Join AspNetUserRoles
-                                            ON  AspNetUsers.Id = AspNetUserRoles.UserId Where( Not Exists 
-                                            (select LogInUserID from Performers
-                                               WHERE AspNetUsers.Id = Performers.LogInUserID)) ">
-
-
+                                SelectCommand="SELECT * FROM [Performers] ">
                            </asp:SqlDataSource>
                         </asp:PlaceHolder>
-                        <asp:GridView ID="GridViewAllUsers" runat="server" autogeneratecolumns="false"  datakeynames="Id,UserName,RoleId" DataSourceID="AllUsersAvailable" >                    
+                        <asp:GridView ID="GridViewAllUsers" runat="server" autogeneratecolumns="false"  datakeynames="PerformerID,PerformerName,Active,LogInUserID" DataSourceID="AllUsersAvailable" >                    
                             <Columns>
-                                <asp:boundfield datafield="Id" readonly="true" headertext="ID"/>
-                                <asp:boundfield datafield="UserName" readonly="true" headertext="Performer Name"/>
-                                <asp:boundfield datafield="RoleId" readonly="true" headertext="Role"/>
+                                <asp:boundfield datafield="PerformerID" readonly="true" headertext="ID"/>
+                                <asp:boundfield datafield="PerformerName" readonly="true" headertext="Performer Name"/>
+                                <asp:boundfield datafield="Active" readonly="true" headertext="Active"/>
+                                
                             <asp:TemplateField>
                             <ItemTemplate>
                                             <asp:CheckBox ID="CheckBoxUser" runat="server" />            
@@ -42,10 +37,13 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:Button ID="ButtonAddPerformer" runat="server" Text="ADD Performer" OnClick="ButtonAddPerformer_Click" />
+                        <asp:Button ID="ButtonActivePerformer" runat="server" Text="Performer Active" OnClick="ButtonActivePerformer_Click" />
+                        <asp:Button ID="ButtonNotActivePerformer" runat="server" Text="Performer Not Active" OnClick="ButtonNotActivePerformer_Click" />
                     </td>
                     
                 </tr>
 
          </table>
+
+
 </asp:Content>
