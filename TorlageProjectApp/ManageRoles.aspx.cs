@@ -21,6 +21,10 @@ namespace TorlageProjectApp
 
         }
 
+        /// <summary>
+        /// See if the logged in user is the correct role
+        /// </summary>
+        /// <param name="UserName"></param>
         private void ValidateUser(string UserName)
         {
 
@@ -42,9 +46,6 @@ namespace TorlageProjectApp
                     //int u = Convert.ToInt32(rd["Id"]);
                     //return u;
                     string u = (String)rd["Id"];
-
-                    LabelAddUser.Text = "";
-                    LabelAddUser.Text = u;
 
                 }
                 else

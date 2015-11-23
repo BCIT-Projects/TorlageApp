@@ -165,8 +165,10 @@
     <Content Include="Content\Site.css" />
     <Content Include="CreateShowList.aspx" />
     <Content Include="Director.aspx" />
+    <Content Include="DirectorShow.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="ManageDirectorRole.aspx" />
+    <Content Include="ManagePerformers.aspx" />
     <Content Include="ManageRoles.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -333,6 +335,13 @@
     <Compile Include="Director.aspx.designer.cs">
       <DependentUpon>Director.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DirectorShow.aspx.cs">
+      <DependentUpon>DirectorShow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DirectorShow.aspx.designer.cs">
+      <DependentUpon>DirectorShow.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -342,6 +351,13 @@
     </Compile>
     <Compile Include="ManageDirectorRole.aspx.designer.cs">
       <DependentUpon>ManageDirectorRole.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManagePerformers.aspx.cs">
+      <DependentUpon>ManagePerformers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManagePerformers.aspx.designer.cs">
+      <DependentUpon>ManagePerformers.aspx</DependentUpon>
     </Compile>
     <Compile Include="ManageRoles.aspx.cs">
       <DependentUpon>ManageRoles.aspx</DependentUpon>

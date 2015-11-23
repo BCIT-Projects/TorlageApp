@@ -10,7 +10,7 @@
 namespace TorlageProjectApp {
     
     
-    public partial class ManageRoles {
+    public partial class ManagePerformers {
         
         /// <summary>
         /// UsersAvaliable control.
@@ -49,12 +49,21 @@ namespace TorlageProjectApp {
         protected global::System.Web.UI.WebControls.Label LabelAddUser;
         
         /// <summary>
-        /// ButtonAddPerformer control.
+        /// ButtonActivePerformer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonAddPerformer;
+        protected global::System.Web.UI.WebControls.Button ButtonActivePerformer;
+        
+        /// <summary>
+        /// ButtonNotActivePerformer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonNotActivePerformer;
     }
 }
