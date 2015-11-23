@@ -99,7 +99,7 @@ namespace TorlageProjectApp
 
             }
            
-            
+   
         }
 
         private string ValidateUser(string UserName)
@@ -113,7 +113,7 @@ namespace TorlageProjectApp
             SqlCommand cmd = new SqlCommand("Select  AspNetUsers.Id, UserName, RoleId " +
                                             "From AspNetUsers Left Join AspNetUserRoles " +
                                             "on AspNetUsers.Id = AspNetUserRoles.UserId " +
-                                            "Where UserName = '" + UserName + "'", con);
+                                            "Where UserName = '" + UserName + "' AND RoleId IS NOT NULL", con);
 
             try
             {

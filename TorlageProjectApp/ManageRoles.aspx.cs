@@ -104,6 +104,10 @@ namespace TorlageProjectApp
                             da.Update(ds, "Performers");
                             LabelAddUser.Text = "Performer is Now Added";
                             //LabelAddUser.Text += performer + ", " + performerID.ToString() + "<br>";
+
+
+
+
                         }
                     }
                     finally
