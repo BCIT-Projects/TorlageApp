@@ -76,7 +76,6 @@ namespace TorlageProjectApp
                 {
                     int value = (int)reader["PerformerID"];
                     userCurrentlyLoggedIn = value;
-                    TextBoxUser.Text = userCurrentlyLoggedIn.ToString();
                 }
 
             }
@@ -105,7 +104,7 @@ namespace TorlageProjectApp
                 "INNER JOIN Performers " +
                 "ON PerformersAvailable.PerformerID = Performers.PerformerID " +
                 "WHERE PerformersAvailable.ScheduleDate = '" + TextBoxChangeAvailability.Text + "' And Performers.PerformerID = '"
-                + TextBoxUser.Text + "'";
+                + userCurrentlyLoggedIn + "'";
             SqlCommand command = new SqlCommand(selectCommand, connection);
             connection.Open();
             SqlDataReader reader = null;
@@ -154,7 +153,7 @@ namespace TorlageProjectApp
                 "INNER JOIN Performers " +
                 "ON PerformersAvailable.PerformerID = Performers.PerformerID " +
                 "WHERE PerformersAvailable.ScheduleDate = '" + TextBoxChangeAvailability.Text + "' And Performers.PerformerID = '"
-                + TextBoxUser.Text + "'";
+                + userCurrentlyLoggedIn + "'";
             SqlCommand command = new SqlCommand(selectCommand, connection);
             connection.Open();
             SqlDataReader reader = null;
@@ -201,7 +200,7 @@ namespace TorlageProjectApp
                     "INNER JOIN Performers " +
                     "ON PerformersAvailable.PerformerID = Performers.PerformerID " +
                     "WHERE ScheduleDate = '" + TextBoxChangeAvailability.Text + "' AND Performers.PerformerID = '"
-                    + TextBoxUser.Text + "'";
+                    + userCurrentlyLoggedIn + "'";
                 SqlCommand command2 = new SqlCommand(updateCommand, connection2);
                 connection2.Open();
                 command2.ExecuteNonQuery();
@@ -214,7 +213,7 @@ namespace TorlageProjectApp
                 //establish an connection to the SQL server 
                 SqlConnection connection4 = new SqlConnection();
                 connection4.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
-                string selectQueryForUserName = "(SELECT PerformerID FROM Performers WHERE PerformerID = '" + TextBoxUser.Text + "'  AND Performers.Active = 1)";
+                string selectQueryForUserName = "(SELECT PerformerID FROM Performers WHERE PerformerID = '" + userCurrentlyLoggedIn + "'  AND Performers.Active = 1)";
                 string insertCommand = "INSERT INTO PerformersAvailable (ScheduleDate, PerformerID, Available, TentativeShow) VALUES('" + TextBoxChangeAvailability.Text + "', "
                     + selectQueryForUserName + ", 1, 0)";
                 SqlCommand command4 = new SqlCommand(insertCommand, connection4);
@@ -241,7 +240,7 @@ namespace TorlageProjectApp
                 "INNER JOIN Performers " +
                 "ON PerformersAvailable.PerformerID = Performers.PerformerID " +
                 "WHERE PerformersAvailable.ScheduleDate = '" + TextBoxChangeAvailability.Text + "' And Performers.PerformerID = '"
-                + TextBoxUser.Text + "'";
+                + userCurrentlyLoggedIn + "'";
             SqlCommand command = new SqlCommand(selectCommand, connection);
             connection.Open();
             SqlDataReader reader = null;
@@ -289,7 +288,7 @@ namespace TorlageProjectApp
                     "INNER JOIN Performers " +
                     "ON PerformersAvailable.PerformerID = Performers.PerformerID " +
                     "WHERE ScheduleDate = '" + TextBoxChangeAvailability.Text + "' AND Performers.PerformerID = '"
-                    + TextBoxUser.Text + "'";
+                    + userCurrentlyLoggedIn + "'";
                 SqlCommand command2 = new SqlCommand(updateCommand, connection2);
                 connection2.Open();
                 command2.ExecuteNonQuery();
@@ -303,7 +302,7 @@ namespace TorlageProjectApp
                 //establish an connection to the SQL server 
                 SqlConnection connection4 = new SqlConnection();
                 connection4.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
-                string selectQueryForUserName = "(SELECT PerformerID FROM Performers WHERE PerformerID = '" + TextBoxUser.Text + "' AND Performers.Active = 1)";
+                string selectQueryForUserName = "(SELECT PerformerID FROM Performers WHERE PerformerID = '" + userCurrentlyLoggedIn + "' AND Performers.Active = 1)";
                 string insertCommand = "INSERT INTO PerformersAvailable (ScheduleDate, PerformerID, Available, TentativeShow) VALUES('" + TextBoxChangeAvailability.Text + "', "
                     + selectQueryForUserName + ", 0, 0)";
                 SqlCommand command4 = new SqlCommand(insertCommand, connection4);
@@ -318,14 +317,6 @@ namespace TorlageProjectApp
 
         protected void CalendarChanageAvailability_DayRender(object sender, DayRenderEventArgs e)
         {
-            string defaultUser = "1001";
-            if(TextBoxUser.Text == "")
-            {
-                defaultUser = "1001";
-            } else
-            {
-                defaultUser = TextBoxUser.Text;
-            }
             bool availability = false;
             bool tentativeshowDate = false;
 
@@ -352,7 +343,7 @@ namespace TorlageProjectApp
                 "INNER JOIN Performers " +
                 "ON PerformersAvailable.PerformerID = Performers.PerformerID " +
                 "WHERE Performers.PerformerID = '"
-                + defaultUser + "'";
+                + userCurrentlyLoggedIn + "'";
             SqlCommand command = new SqlCommand(selectCommand, connection);
             connection.Open();
             SqlDataReader reader = null;

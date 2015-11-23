@@ -21,9 +21,6 @@
     
         <div class="colorBehindLabel">
             <div id="top">
-                <asp:TextBox ID="TextBoxUser" runat="server" Style="float:right;" ></asp:TextBox>
-                <asp:Label ID="LableUser" runat="server" Text="User:" Style="font-size:large; float:right;" ></asp:Label>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBoxUser" ErrorMessage="Must enter your username."></asp:RequiredFieldValidator>
                 <div class="spacer"></div>
                 <div class="spacer"></div>
             </div>
@@ -60,9 +57,9 @@
                                 SelectCommand="SELECT PerformerName
                                             FROM [PerformersAvailable] LEFT JOIN [Performers]
                                             on PerformersAvailable.PerformerID = Performers.PerformerID
-                                            where ( ScheduleDate = @PerformeanceDate) AND (Available = 1)">
+                                            where ( ScheduleDate = @PerformanceDate) AND (Available = 1)">
                                 <SelectParameters>
-                                    <asp:ControlParameter Name="PerformeanceDate" Type="String" 
+                                    <asp:ControlParameter Name="PerformanceDate" Type="String" 
                                         ControlID="TextBoxChangeAvailability" PropertyName="Text" />
                                 </SelectParameters>
                            </asp:SqlDataSource>
@@ -80,20 +77,20 @@
                     <td>
                        
                        <div class ="PerformerList">
-                       <asp:PlaceHolder ID="PlaceHolderNotAvailable" runat="server">
-                           <asp:SqlDataSource ID="SqlDataSourceNotAvailable" runat="server"
+                       <asp:PlaceHolder ID="PlaceHolderNotAvailablePerformers" runat="server">
+                           <asp:SqlDataSource ID="SqlDataSourceNotAvailablePerformers" runat="server"
                                ConnectionString="<%$ ConnectionStrings:ToConnectionString %>" 
                                 SelectCommand="SELECT PerformerName
                                             FROM [PerformersAvailable] LEFT JOIN [Performers]
                                             on PerformersAvailable.PerformerID = Performers.PerformerID
-                                            where ( ScheduleDate = @PerformeanceDate) AND (Available = 0)">
+                                            where ( ScheduleDate = @PerformanceDate) AND (Available = 0)">
                                 <SelectParameters>
-                                    <asp:ControlParameter Name="PerformeanceDate" Type="String" 
+                                    <asp:ControlParameter Name="PerformanceDate" Type="String" 
                                         ControlID="TextBoxChangeAvailability" PropertyName="Text" />
                                 </SelectParameters>
                            </asp:SqlDataSource>
                         </asp:PlaceHolder>
-                        <asp:GridView ID="GridViewNotAvailable" runat="server" autogeneratecolumns="false" DataKeyNames="PerformerName" DataSourceID="SqlDataSourceNotAvailable" >                    
+                        <asp:GridView ID="GridViewNotAvailable" runat="server" autogeneratecolumns="false" DataKeyNames="PerformerName" DataSourceID="SqlDataSourceNotAvailablePerformers" >                    
                             <Columns>
                                 <asp:boundfield datafield="PerformerName" readonly="true" headertext="Not Available Performer"/>        
                             </Columns>

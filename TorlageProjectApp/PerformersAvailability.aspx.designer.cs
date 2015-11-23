@@ -22,33 +22,6 @@ namespace TorlageProjectApp {
         protected global::System.Web.UI.HtmlControls.HtmlForm form2;
         
         /// <summary>
-        /// TextBoxUser control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxUser;
-        
-        /// <summary>
-        /// LableUser control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LableUser;
-        
-        /// <summary>
-        /// RequiredFieldValidator1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-        
-        /// <summary>
         /// LabelInstructions control.
         /// </summary>
         /// <remarks>
@@ -148,22 +121,22 @@ namespace TorlageProjectApp {
         protected global::System.Web.UI.WebControls.GridView GridViewAvailable;
         
         /// <summary>
-        /// PlaceHolderNotAvailable control.
+        /// PlaceHolderNotAvailablePerformers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolderNotAvailable;
+        protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolderNotAvailablePerformers;
         
         /// <summary>
-        /// SqlDataSourceNotAvailable control.
+        /// SqlDataSourceNotAvailablePerformers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceNotAvailable;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceNotAvailablePerformers;
         
         /// <summary>
         /// GridViewNotAvailable control.
