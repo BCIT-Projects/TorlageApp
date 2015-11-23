@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+
 
 namespace TorlageProjectApp
 {
@@ -65,11 +68,74 @@ namespace TorlageProjectApp
                 }
             }
         }
-
+        
         protected void Page_Load(object sender, EventArgs e)
         {
+            var loggedInUser = Context.User.Identity.Name;
+            string Role = ValidateUser(loggedInUser);
+            
+            if(Role.CompareTo("admin")==0){
+                Director.Visible = false;
+                Admin.Visible = true;
+                Performer.Visible = false;
+            }
+            else if (Role.CompareTo("director") == 0)
+            {
+                Director.Visible = true;
+                Admin.Visible = false;
+                Performer.Visible = false;
+            }
+            else if (Role.CompareTo("performer") == 0)
+            {
+                Director.Visible = false;
+                Admin.Visible = false;
+                Performer.Visible = true;
+            }
+            else
+            {
+                Director.Visible = false;
+                Admin.Visible = false;
+                Performer.Visible = false;
 
+            }
+           
+            
         }
+
+        private string ValidateUser(string UserName)
+        {
+
+            
+            var loggedInUser = Context.User.Identity.Name;
+            string constr = ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(constr);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("Select  AspNetUsers.Id, UserName, RoleId " +
+                                            "From AspNetUsers Left Join AspNetUserRoles " +
+                                            "on AspNetUsers.Id = AspNetUserRoles.UserId " +
+                                            "Where UserName = '" + UserName + "'", con);
+
+            try
+            {
+                SqlDataReader rd = cmd.ExecuteReader();
+                if (rd.Read())
+                {
+                    string u = (String)rd["RoleId"];
+                    
+                    return u;
+                }
+                else
+                {
+                    return "";
+                    
+                }
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
         {
