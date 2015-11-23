@@ -84,8 +84,8 @@ namespace TorlageProjectApp
             // Display Show Scheduled.
             Style ShowExists = new Style();
             ShowExists.BackColor = System.Drawing.Color.Green;
-            ShowExists.BorderColor = System.Drawing.Color.White;
-            ShowExists.BorderWidth = 3;
+            //ShowExists.BorderColor = System.Drawing.Color.White;
+            //ShowExists.BorderWidth = 3;
 
             //establish an connection to the SQL server 
             SqlConnection connection = new SqlConnection();
@@ -326,7 +326,7 @@ namespace TorlageProjectApp
 
         protected void ButtonNextPage_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/SelectPerformers");
+            Response.Redirect("~/DirectorSelectPerformers");
         }
 
         protected void TextBoxSetShowDate_TextChanged(object sender, EventArgs e)

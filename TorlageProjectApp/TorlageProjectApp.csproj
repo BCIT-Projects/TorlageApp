@@ -165,6 +165,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="CreateShowList.aspx" />
     <Content Include="Director.aspx" />
+    <Content Include="DirectorSelectPerformers.aspx" />
     <Content Include="DirectorShow.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="ManageDirectorRole.aspx" />
@@ -338,6 +339,13 @@
     </Compile>
     <Compile Include="Director.aspx.designer.cs">
       <DependentUpon>Director.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DirectorSelectPerformers.aspx.cs">
+      <DependentUpon>DirectorSelectPerformers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DirectorSelectPerformers.aspx.designer.cs">
+      <DependentUpon>DirectorSelectPerformers.aspx</DependentUpon>
     </Compile>
     <Compile Include="DirectorShow.aspx.cs">
       <DependentUpon>DirectorShow.aspx</DependentUpon>
