@@ -13,7 +13,7 @@
 
   
     <div id="spacertopbar"></div>
-    <img id="default" alt="bg image" longdesc="background image" src="Resources/TorlageFinal.jpg" />
+    <img id="default" alt="bg image" longdesc="background image"src="Resources/TorlageFinal.jpg" />
     <!--img alt="bg image" longdesc="background image" src="Resources/Torlage1.jpg" style="width: 1166px; height: 619px"/-->
     
 

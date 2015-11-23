@@ -1,11 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DirectorShow.aspx.cs" Inherits="TorlageProjectApp.DirectorShow" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <style type="text/css">
+<style type="text/css">
 
 body {
     margin: auto;
     width: 100%;
-    background-color: #6f8ef5;
+    
     margin: 0;
     font-family: Arial;
 
@@ -15,7 +15,7 @@ body {
     width: 540px;
     height: 650px;
     margin: auto;
-    border:3px solid black;
+
     padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 50px;
@@ -83,13 +83,14 @@ td{
 
 
 </style>
-
+<div id="spacertopbar"></div>
+    <img id="default" alt="bg image" longdesc="background image" src="Resources/TorlageFinal.jpg" />
     
     <div id="DirectorPages">
         <div id="navbar-director">
             <ul>
-                <li><a runat="server" href="~/Director">Set Show Date</a></li>
-                <li><a runat="server" href="~/SelectPerformers">Create A Show</a></li>
+                <li><a runat="server" href="~/DirectorShow">Set Show Date</a></li>
+                <li><a runat="server" href="~/DirectorSelectPerformers">Select Performers</a></li>
           <!--      <li><a runat="server" href="~/CreateShowList">Create Show List</a></li>
                 <li><a runat="server" href="~/ReviewShowList">Review Show List</a></li>
             -->
@@ -160,10 +161,10 @@ td{
                        <asp:PlaceHolder ID="PlaceHolderAvaliablePerformers" runat="server">
                            <asp:SqlDataSource ID="SqlDataSourceAvailablePerformers" runat="server"
                                ConnectionString="<%$ ConnectionStrings:ToConnectionString %>" 
-                                SelectCommand="SELECT PerformerName
+                                SelectCommand="SELECT PerformerName, Active
                                             FROM [PerformersAvailable] LEFT JOIN [Performers]
                                             on PerformersAvailable.PerformerID = Performers.PerformerID
-                                            where ( ScheduleDate = @PerformeanceDate) AND (Available = 1)">
+                                            where ( ScheduleDate = @PerformeanceDate) AND (Available = 1) AND Active = 1">
                                 <SelectParameters>
                                     <asp:ControlParameter Name="PerformeanceDate" Type="String" 
                                         ControlID="TextboxSetShowDate" PropertyName="Text" />

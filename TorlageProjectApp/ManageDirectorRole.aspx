@@ -1,6 +1,31 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManageDirectorRole.aspx.cs" Inherits="TorlageProjectApp.ManageDirectorRole" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <table>
+<style type="text/css">
+body {
+    margin: auto;
+    width: 100%;
+    margin: 0;
+    font-family: Arial;
+
+}  
+
+#DirectorPages{
+    width: 540px;
+    height: 650px;
+    margin: auto;
+
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+</style>
+
+
+   <div id="spacertopbar"></div>
+    <img id="default" alt="bg image" longdesc="background image"src="Resources/TorlageFinal.jpg" />
+    <div id="DirectorPages">
+     <table>
                 <tr>
                 <!--List of performers available-->
                 <td >
@@ -44,5 +69,5 @@
                 </tr>
 
          </table>
-
+        </div>
 </asp:Content>
