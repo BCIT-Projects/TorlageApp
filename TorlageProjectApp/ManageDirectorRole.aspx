@@ -10,7 +10,8 @@
                                ConnectionString="<%$ ConnectionStrings:ToConnectionString %>" 
                                 SelectCommand="SELECT Id, UserName, RoleId
                                             FROM [AspNetUsers] Left Join AspNetUserRoles
-                                            ON  AspNetUsers.Id = AspNetUserRoles.UserId ">
+                                            ON  AspNetUsers.Id = AspNetUserRoles.UserId 
+                                            ">
 
 
                            </asp:SqlDataSource>
@@ -19,7 +20,7 @@
                             <Columns>
                                 <asp:boundfield datafield="Id" readonly="true" headertext="ID"/>
                                 <asp:boundfield datafield="UserName" readonly="true" headertext="Performer Name"/>
-                                                                <asp:boundfield datafield="RoleId" readonly="true" headertext="Role"/>
+                                <asp:boundfield datafield="RoleId" readonly="true" headertext="Role"/>
                             <asp:TemplateField>
                             <ItemTemplate>
                                             <asp:CheckBox ID="CheckBoxUser" runat="server" />            
@@ -37,6 +38,7 @@
                         <asp:Button ID="ButtonAddDirector" runat="server" Text="ADD Director" OnClick="ButtonAddDirector_Click" />
                     </td>
                     <td>
+                        <asp:Button ID="ButtonRemoveDirector" runat="server" Text="Remove Director" OnClick="ButtonRemoveDirector_Click" />
                         <asp:Label ID="LabelAddUser" runat="server" Text="Label"></asp:Label>
                     </td>
                 </tr>

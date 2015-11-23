@@ -111,6 +111,51 @@ namespace TorlageProjectApp
         }
 
 
+        protected void ButtonRemoveDirector_Click(object sender, EventArgs e)
+        {
+            LabelAddUser.Text = "";
+            foreach (GridViewRow row in GridViewAllUsers.Rows)
+            {
+                CheckBox checkbox = (CheckBox)row.FindControl("CheckBoxUser");
+                if (checkbox.Checked)
+                {
+                    string directorID = (String)(GridViewAllUsers.DataKeys[row.RowIndex].Values["Id"]);
+                    // Retreive the Performer Name
+                    string director = (String)(GridViewAllUsers.DataKeys[row.RowIndex].Values["UserName"]);
+
+
+
+                    SqlConnection cnnSearch = new SqlConnection();
+                    cnnSearch.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
+                    cnnSearch.Open();
+                    SqlCommand cmdSearch = new SqlCommand();
+                    cmdSearch.CommandText = "DELETE From AspNetUserRoles WHERE UserId ='" + directorID + "' AND RoleId = 'director'";
+                    cmdSearch.Connection = cnnSearch;
+                    try
+                    {
+                        SqlDataReader rd = cmdSearch.ExecuteReader();
+                        if (rd.Read())
+                        {
+                            
+                        }
+                        else
+                        {
+                            ;
+
+                            // LabelAddUser.Text = "Director is Now Added";
+
+                        }
+                    }
+                    finally
+                    {
+                        cnnSearch.Close();
+
+                    }
+                }
+            }
+            Response.Redirect("~/ManageDirectorRole");
+        }
+
 
     }
 }
