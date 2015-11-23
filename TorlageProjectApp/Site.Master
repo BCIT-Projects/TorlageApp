@@ -19,6 +19,10 @@
             margin-left: 10px;
             margin-right: 10px;
         }
+        #Director a{
+            margin-left: 10px;
+            margin-right: 10px;
+        }
         #Admin{
             margin-top:15px;
             margin-left: 10px;
@@ -76,13 +80,16 @@
                         <li>
                             <asp:Panel id="Director" runat="server" Visible="True">
                                 <a runat="server" href="~/Director" style="color:#AAA; text-decoration:none;" onMouseOver="this.style.color='#FFF'" onMouseOut="this.style.color='#AAA'">Director</a>
+                                <a runat="server" href="~/ManageRoles" style="color:#AAA; text-decoration:none;" onMouseOver="this.style.color='#FFF'" onMouseOut="this.style.color='#AAA'">Manage New Performers</a>
                             </asp:Panel>
                         </li>
+                        
                         <li>
                             <asp:Panel id="Admin" runat="server" Visible="True">
-                                <a runat="server" href="~/ManageRoles" style="color:#AAA; text-decoration:none;" onMouseOver="this.style.color='#FFF'" onMouseOut="this.style.color='#AAA'">Admin</a>
+                                <a runat="server" href="~/ManageDirectorRole" style="color:#AAA; text-decoration:none;" onMouseOver="this.style.color='#FFF'" onMouseOut="this.style.color='#AAA'">Admin</a>
                             </asp:Panel>
                         </li>
+
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
