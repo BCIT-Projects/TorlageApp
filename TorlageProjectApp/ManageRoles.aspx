@@ -9,18 +9,20 @@
                        <asp:PlaceHolder ID="UsersAvaliable" runat="server">
                            <asp:SqlDataSource ID="AllUsersAvailable" runat="server"
                                ConnectionString="<%$ ConnectionStrings:ToConnectionString %>" 
-                                SelectCommand="SELECT Id, UserName   
-                                            FROM [AspNetUsers] Where Not Exists 
+                                SelectCommand="SELECT Id, UserName, RoleId
+                                            FROM [AspNetUsers] Left Join AspNetUserRoles
+                                            ON  AspNetUsers.Id = AspNetUserRoles.UserId Where( Not Exists 
                                             (select LogInUserID from Performers
-                                               WHERE AspNetUsers.Id = Performers.LogInUserID) ">
+                                               WHERE AspNetUsers.Id = Performers.LogInUserID)) ">
 
 
                            </asp:SqlDataSource>
                         </asp:PlaceHolder>
-                        <asp:GridView ID="GridViewAllUsers" runat="server" autogeneratecolumns="false"  datakeynames="Id,UserName" DataSourceID="AllUsersAvailable" >                    
+                        <asp:GridView ID="GridViewAllUsers" runat="server" autogeneratecolumns="false"  datakeynames="Id,UserName,RoleId" DataSourceID="AllUsersAvailable" >                    
                             <Columns>
                                 <asp:boundfield datafield="Id" readonly="true" headertext="ID"/>
                                 <asp:boundfield datafield="UserName" readonly="true" headertext="Performer Name"/>
+                                <asp:boundfield datafield="RoleId" readonly="true" headertext="Role"/>
                             <asp:TemplateField>
                             <ItemTemplate>
                                             <asp:CheckBox ID="CheckBoxUser" runat="server" />            
