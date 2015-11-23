@@ -1,12 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Performers.aspx.cs" Inherits="TorlageProjectApp.Performers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-        <div id="nav">
-            <ul>
-                <li><a runat="server" href="~/PerformersAvailability">Availability</a></li>
-                <li><a runat="server" href="~/PerformersNumbers">Numbers</a></li>
-            </ul>
-        </div>
-        <div class="spacer"></div>
 
     <div id="wrapper">
     
@@ -45,10 +38,10 @@
                        <asp:PlaceHolder ID="PlaceHolderAvaliablePerformers" runat="server">
                            <asp:SqlDataSource ID="SqlDataSourceAvailablePerformers" runat="server"
                                ConnectionString="<%$ ConnectionStrings:ToConnectionString %>" 
-                                SelectCommand="SELECT PerformerName
+                                SelectCommand="SELECT PerformerName, Active
                                             FROM [PerformersAvailable] LEFT JOIN [Performers]
                                             on PerformersAvailable.PerformerID = Performers.PerformerID
-                                            where ( ScheduleDate = @PerformanceDate) AND (Available = 1)">
+                                            where ( ScheduleDate = @PerformanceDate) AND (Available = 1) AND (Active = 1)">
                                 <SelectParameters>
                                     <asp:ControlParameter Name="PerformanceDate" Type="String" 
                                         ControlID="TextBoxChangeAvailability" PropertyName="Text" />
