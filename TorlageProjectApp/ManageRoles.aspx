@@ -1,15 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ManageRoles.aspx.cs" Inherits="TorlageProjectApp.Roles.ManageRoles" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManageRoles.aspx.cs" Inherits="TorlageProjectApp.ManageRoles" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>
-         <table>
+    <table>
                 <tr>
                 <!--List of performers available-->
                 <td >
@@ -49,7 +41,4 @@
                 </tr>
 
          </table>
-    </div>
-    </form>
-</body>
-</html>
+</asp:Content>
