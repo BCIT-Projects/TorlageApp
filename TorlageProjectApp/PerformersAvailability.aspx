@@ -49,6 +49,58 @@
             <asp:Button ID="ButtonNo" runat="server" Text="Not Available" OnClick="ButtonNo_Click" />
             <div class="spacer"></div>
             <asp:Label ID="LabelUserAlreadyClickedAvailability" runat="server" DataSourceID="SqlTorlageDatabase"></asp:Label>
+                
+                    <!---display of performers available-->
+                    <td>
+                       
+                       <div class ="PerformerList">
+                       <asp:PlaceHolder ID="PlaceHolderAvaliablePerformers" runat="server">
+                           <asp:SqlDataSource ID="SqlDataSourceAvailablePerformers" runat="server"
+                               ConnectionString="<%$ ConnectionStrings:ToConnectionString %>" 
+                                SelectCommand="SELECT PerformerName
+                                            FROM [PerformersAvailable] LEFT JOIN [Performers]
+                                            on PerformersAvailable.PerformerID = Performers.PerformerID
+                                            where ( ScheduleDate = @PerformeanceDate) AND (Available = 1)">
+                                <SelectParameters>
+                                    <asp:ControlParameter Name="PerformeanceDate" Type="String" 
+                                        ControlID="TextBoxChangeAvailability" PropertyName="Text" />
+                                </SelectParameters>
+                           </asp:SqlDataSource>
+                        </asp:PlaceHolder>
+                        <asp:GridView ID="GridViewAvailable" runat="server"  autogeneratecolumns="false" DataKeyNames="PerformerName" DataSourceID="SqlDataSourceAvailablePerformers" >                    
+                            <Columns>
+                                <asp:boundfield datafield="PerformerName" readonly="true" headertext="Available Performer"/>
+        
+                            </Columns>
+                        </asp:GridView>
+                        </div>
+                    </td>
+                    <!---end of display of performers Available-->
+                    <!---display of performers Not available-->
+                    <td>
+                       
+                       <div class ="PerformerList">
+                       <asp:PlaceHolder ID="PlaceHolderNotAvailable" runat="server">
+                           <asp:SqlDataSource ID="SqlDataSourceNotAvailable" runat="server"
+                               ConnectionString="<%$ ConnectionStrings:ToConnectionString %>" 
+                                SelectCommand="SELECT PerformerName
+                                            FROM [PerformersAvailable] LEFT JOIN [Performers]
+                                            on PerformersAvailable.PerformerID = Performers.PerformerID
+                                            where ( ScheduleDate = @PerformeanceDate) AND (Available = 0)">
+                                <SelectParameters>
+                                    <asp:ControlParameter Name="PerformeanceDate" Type="String" 
+                                        ControlID="TextBoxChangeAvailability" PropertyName="Text" />
+                                </SelectParameters>
+                           </asp:SqlDataSource>
+                        </asp:PlaceHolder>
+                        <asp:GridView ID="GridViewNotAvailable" runat="server" autogeneratecolumns="false" DataKeyNames="PerformerName" DataSourceID="SqlDataSourceNotAvailable" >                    
+                            <Columns>
+                                <asp:boundfield datafield="PerformerName" readonly="true" headertext="Not Available Performer"/>        
+                            </Columns>
+                        </asp:GridView>
+                        </div>
+                    </td>
+                    <!---end of display of performers NOT-->
             </div>
         </div>
     
