@@ -33,6 +33,10 @@
             margin-left: 10px;
             margin-right: 10px;            
         }
+        #Performer a{
+            margin-left: 10px;
+            margin-right: 10px;
+        }
         </style>
 </head>
 <body>
@@ -74,12 +78,14 @@
                         <li><a runat="server" href="~/About">About</a></li>
                         <li>
                             <asp:Panel id="Performer" runat="server" Visible="True">
-                            <a runat="server" href="~/Performers" style="color:#AAA; text-decoration:none;" onMouseOver="this.style.color='#FFF'" onMouseOut="this.style.color='#AAA'">Performers</a>
+                            <a runat="server" href="~/Performers" style="color:#AAA; text-decoration:none;" onMouseOver="this.style.color='#FFF'" onMouseOut="this.style.color='#AAA'">Availability</a>
+                            <a runat="server" href="~/PerformersNumbers" style="color:#AAA; text-decoration:none;" onMouseOver="this.style.color='#FFF'" onMouseOut="this.style.color='#AAA'">Numbers</a>
+                            <a runat="server" href="~/ManageProfile" style="color:#AAA; text-decoration:none;" onMouseOver="this.style.color='#FFF'" onMouseOut="this.style.color='#AAA'">Manage Profile</a>
                             </asp:Panel>
                             </li>
                         <li>
                             <asp:Panel id="Director" runat="server" Visible="True">
-                                <a runat="server" href="~/DirectorShow" style="color:#AAA; text-decoration:none;" onMouseOver="this.style.color='#FFF'" onMouseOut="this.style.color='#AAA'">Director</a>
+                                <a runat="server" href="~/DirectorShow" style="color:#AAA; text-decoration:none;" onMouseOver="this.style.color='#FFF'" onMouseOut="this.style.color='#AAA'">Show</a>
                                 <a runat="server" href="~/ManagePerformers" style="color:#AAA; text-decoration:none;" onMouseOver="this.style.color='#FFF'" onMouseOut="this.style.color='#AAA'">Manage Performers</a>
                                 <a runat="server" href="~/ManageRoles" style="color:#AAA; text-decoration:none;" onMouseOver="this.style.color='#FFF'" onMouseOut="this.style.color='#AAA'">New Performers</a>
                             </asp:Panel>
