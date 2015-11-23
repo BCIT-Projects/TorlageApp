@@ -196,7 +196,6 @@ namespace TorlageProjectApp
                 SqlConnection connection = new SqlConnection();   //establish an connection to the SQL server 
                 connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
                 string selectCommand = "SELECT * FROM Performers WHERE Performers.Active = 1 AND PerformerID NOT IN (select PerformerID from PerformersAvailable where ScheduleDate ='" + TextBoxSetShowDate.Text + "')";
-
                 SqlCommand command = new SqlCommand(selectCommand, connection);
 
                 connection.Open();

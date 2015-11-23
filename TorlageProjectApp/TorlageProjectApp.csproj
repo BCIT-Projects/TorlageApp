@@ -166,6 +166,7 @@
     <Content Include="CreateShowList.aspx" />
     <Content Include="Director.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="ManageRoles.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -178,7 +179,6 @@
     <Content Include="ReviewShowList.aspx" />
     <Content Include="PerformersAvailability.aspx" />
     <Content Include="PerformersNumbers.aspx" />
-    <Content Include="Roles\ManageRoles.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -333,6 +333,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ManageRoles.aspx.cs">
+      <DependentUpon>ManageRoles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageRoles.aspx.designer.cs">
+      <DependentUpon>ManageRoles.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="MySqlDataReader.cs" />
@@ -358,13 +365,6 @@
     </Compile>
     <Compile Include="ReviewShowList.aspx.designer.cs">
       <DependentUpon>ReviewShowList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Roles\ManageRoles.aspx.cs">
-      <DependentUpon>ManageRoles.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Roles\ManageRoles.aspx.designer.cs">
-      <DependentUpon>ManageRoles.aspx</DependentUpon>
     </Compile>
     <Compile Include="SelectPerformers.aspx.cs">
       <DependentUpon>SelectPerformers.aspx</DependentUpon>
