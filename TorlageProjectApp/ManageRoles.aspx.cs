@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -91,6 +92,16 @@ namespace TorlageProjectApp
                         }
                         else
                         {
+                            //Ading to the AspNetUserRoles table
+                            SqlConnection connectionRole = new SqlConnection();
+                            connectionRole.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
+                            string insertCommand = "INSERT INTO AspNetUserRoles (UserId, RoleId) VALUES('" + performerID + "', 'performer')";
+                            SqlCommand commandRole = new SqlCommand(insertCommand, connectionRole);
+                            connectionRole.Open();
+                            commandRole.ExecuteNonQuery();
+                            connectionRole.Close();
+
+                            //Adding to performer table
                             SqlDataAdapter da = new SqlDataAdapter();
                             da.SelectCommand = cmd;
                             DataSet ds = new DataSet();
@@ -102,21 +113,19 @@ namespace TorlageProjectApp
                             drow["LogInUserID"] = performerID;
                             ds.Tables["Performers"].Rows.Add(drow);
                             da.Update(ds, "Performers");
+                            
                             LabelAddUser.Text = "Performer is Now Added";
-                            //LabelAddUser.Text += performer + ", " + performerID.ToString() + "<br>";
-
-
-
-
+                            
                         }
                     }
                     finally
                     {
                         cnn.Close();
-                        //int PerformerName = Convert.ToInt32(GridView1.DataKeys[row.RowIndex].Value);
+                        
                     }
                 }
             }
+            Response.Redirect("~/ManageRoles");
         }
 
 

@@ -10,7 +10,9 @@
                            <asp:SqlDataSource ID="AllUsersAvailable" runat="server"
                                ConnectionString="<%$ ConnectionStrings:ToConnectionString %>" 
                                 SelectCommand="SELECT Id, UserName   
-                                            FROM [AspNetUsers] ">
+                                            FROM [AspNetUsers] Where Not Exists 
+                                            (select LogInUserID from Performers
+                                               WHERE AspNetUsers.Id = Performers.LogInUserID) ">
 
 
                            </asp:SqlDataSource>
