@@ -13,7 +13,23 @@
     </asp:PlaceHolder>
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
+    <style>
+        #Director{
+            margin-top:15px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        #Admin{
+            margin-top:15px;
+            margin-left: 10px;
+            margin-right: 10px;            
+        }
+        #Performer{
+            margin-top:15px;
+            margin-left: 10px;
+            margin-right: 10px;            
+        }
+    </style>
 </head>
 <body>
     <form runat="server">
@@ -52,8 +68,21 @@
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Home</a></li>
                         <li><a runat="server" href="~/About">About</a></li>
-                        <li><a runat="server" href="~/PerformersAvailability">Performers</a></li>
-                        <li><a runat="server" href="~/Director">Director</a></li>
+                        <li>
+                            <asp:Panel id="Performer" runat="server" Visible="True">
+                            <a runat="server" href="~/PerformersAvailability" style="color:#AAA; text-decoration:none;" onMouseOver="this.style.color='#FFF'" onMouseOut="this.style.color='#AAA'">Performers</a>
+                            </asp:Panel>
+                            </li>
+                        <li>
+                            <asp:Panel id="Director" runat="server" Visible="True">
+                                <a runat="server" href="~/Director" style="color:#AAA; text-decoration:none;" onMouseOver="this.style.color='#FFF'" onMouseOut="this.style.color='#AAA'">Director</a>
+                            </asp:Panel>
+                        </li>
+                        <li>
+                            <asp:Panel id="Admin" runat="server" Visible="True">
+                                <a runat="server" href="~/ManageRoles" style="color:#AAA; text-decoration:none;" onMouseOver="this.style.color='#FFF'" onMouseOut="this.style.color='#AAA'">Admin</a>
+                            </asp:Panel>
+                        </li>
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
@@ -80,6 +109,7 @@
             <hr />
             <footer>
                 <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+                <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
             </footer>
         </div>
     </form>
