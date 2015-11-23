@@ -166,6 +166,7 @@
     <Content Include="CreateShowList.aspx" />
     <Content Include="Director.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="ManageDirectorRole.aspx" />
     <Content Include="ManageRoles.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -334,6 +335,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="ManageDirectorRole.aspx.cs">
+      <DependentUpon>ManageDirectorRole.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageDirectorRole.aspx.designer.cs">
+      <DependentUpon>ManageDirectorRole.aspx</DependentUpon>
     </Compile>
     <Compile Include="ManageRoles.aspx.cs">
       <DependentUpon>ManageRoles.aspx</DependentUpon>
