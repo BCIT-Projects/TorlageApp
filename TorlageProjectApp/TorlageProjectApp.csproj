@@ -169,6 +169,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="ManageDirectorRole.aspx" />
     <Content Include="ManagePerformers.aspx" />
+    <Content Include="ManageProfile.aspx" />
     <Content Include="ManageRoles.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -362,6 +363,13 @@
     </Compile>
     <Compile Include="ManagePerformers.aspx.designer.cs">
       <DependentUpon>ManagePerformers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageProfile.aspx.cs">
+      <DependentUpon>ManageProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageProfile.aspx.designer.cs">
+      <DependentUpon>ManageProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="ManageRoles.aspx.cs">
       <DependentUpon>ManageRoles.aspx</DependentUpon>
