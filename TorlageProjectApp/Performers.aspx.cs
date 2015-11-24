@@ -11,6 +11,7 @@ namespace TorlageProjectApp
     public partial class Performers : System.Web.UI.Page
     {
         bool available = false;
+        bool penciled = false;
         int userCurrentlyLoggedIn;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -215,8 +216,8 @@ namespace TorlageProjectApp
                 SqlConnection connection4 = new SqlConnection();
                 connection4.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
                 string selectQueryForUserName = "(SELECT PerformerID FROM Performers WHERE PerformerID = '" + userCurrentlyLoggedIn + "'  AND Performers.Active = 1)";
-                string insertCommand = "INSERT INTO PerformersAvailable (ScheduleDate, PerformerID, Available, TentativeShow) VALUES('" + TextBoxChangeAvailability.Text + "', "
-                    + selectQueryForUserName + ", 1, 0)";
+                string insertCommand = "INSERT INTO PerformersAvailable (ScheduleDate, PerformerID, Available, TentativeShow, PenciledToPerform) VALUES('" + TextBoxChangeAvailability.Text + "', "
+                    + selectQueryForUserName + ", 1, 0, 0)";
                 SqlCommand command4 = new SqlCommand(insertCommand, connection4);
                 connection4.Open();
                 command4.ExecuteNonQuery();
@@ -236,7 +237,7 @@ namespace TorlageProjectApp
             SqlConnection connection = new SqlConnection();
             connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
             string selectCommand = "SELECT PerformersAvailable.AvailableID, Performers.PerformerName, PerformersAvailable.ScheduleDate, " +
-                "PerformersAvailable.Available " +
+                "PerformersAvailable.Available, PerformersAvailable.PenciledToPerform " +
                 "FROM PerformersAvailable " +
                 "INNER JOIN Performers " +
                 "ON PerformersAvailable.PerformerID = Performers.PerformerID " +
@@ -254,6 +255,7 @@ namespace TorlageProjectApp
                 {
                     foundRecordOnDate = true;
                     byte value = (byte)reader["Available"];
+                    byte value2 = (byte)reader["PenciledToPerform"];
                     if (value == 1)
                     {
                         available = true;
@@ -261,6 +263,15 @@ namespace TorlageProjectApp
                     else
                     {
                         available = false;
+                    }
+
+                    if (value2 == 1)
+                    {
+                        penciled = true;
+                    }
+                    else
+                    {
+                        penciled = false;
                     }
                 }
 
@@ -276,7 +287,7 @@ namespace TorlageProjectApp
                 connection.Close();
             }
 
-            if (foundRecordOnDate && available)
+            if (foundRecordOnDate && available && !penciled)
             {
                 // do update of record
 
@@ -304,8 +315,8 @@ namespace TorlageProjectApp
                 SqlConnection connection4 = new SqlConnection();
                 connection4.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
                 string selectQueryForUserName = "(SELECT PerformerID FROM Performers WHERE PerformerID = '" + userCurrentlyLoggedIn + "' AND Performers.Active = 1)";
-                string insertCommand = "INSERT INTO PerformersAvailable (ScheduleDate, PerformerID, Available, TentativeShow) VALUES('" + TextBoxChangeAvailability.Text + "', "
-                    + selectQueryForUserName + ", 0, 0)";
+                string insertCommand = "INSERT INTO PerformersAvailable (ScheduleDate, PerformerID, Available, TentativeShow, PenciledToPerform) VALUES('" + TextBoxChangeAvailability.Text + "', "
+                    + selectQueryForUserName + ", 0, 0, 0)";
                 SqlCommand command4 = new SqlCommand(insertCommand, connection4);
                 connection4.Open();
                 command4.ExecuteNonQuery();
