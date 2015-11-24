@@ -13,6 +13,24 @@ namespace TorlageProjectApp {
     public partial class DirectorSelectPerformers {
         
         /// <summary>
+        /// ButtonNextPage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonNextPage;
+        
+        /// <summary>
+        /// LabelTitleName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelTitleName;
+        
+        /// <summary>
         /// LabelDate control.
         /// </summary>
         /// <remarks>
@@ -76,40 +94,31 @@ namespace TorlageProjectApp {
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceNotAvailable;
         
         /// <summary>
-        /// GridView2 control.
+        /// GridViewPerforming control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView2;
+        protected global::System.Web.UI.WebControls.GridView GridViewPerforming;
         
         /// <summary>
-        /// LabelTitleName control.
+        /// ButtonAddPerformers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelTitleName;
+        protected global::System.Web.UI.WebControls.Button ButtonAddPerformers;
         
         /// <summary>
-        /// LabelSelectTable control.
+        /// LabelAddPerformers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelSelectTable;
-        
-        /// <summary>
-        /// LabelDescriptionPerformersShedule control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelDescriptionPerformersShedule;
+        protected global::System.Web.UI.WebControls.Label LabelAddPerformers;
         
         /// <summary>
         /// PlaceHolderAvaliablePerformers control.
@@ -137,41 +146,5 @@ namespace TorlageProjectApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridViewAvailablePerform;
-        
-        /// <summary>
-        /// ButtonAddPerformers control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonAddPerformers;
-        
-        /// <summary>
-        /// LabelAddPerformers control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelAddPerformers;
-        
-        /// <summary>
-        /// ButtonBackPage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonBackPage;
-        
-        /// <summary>
-        /// ButtonNextPage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonNextPage;
     }
 }

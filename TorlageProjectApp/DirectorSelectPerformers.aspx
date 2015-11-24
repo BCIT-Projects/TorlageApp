@@ -1,21 +1,29 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DirectorSelectPerformers.aspx.cs" Inherits="TorlageProjectApp.DirectorSelectPerformers" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+
 <style type="text/css">
 
 body {
-    margin: auto;
-    width: 100%;
     
+    margin: auto;
+    width: 100%;    
     margin: 0;
     font-family: Arial;
 
 }  
 
+#picture{
+   
+    width:355px;
+    margin-right:20px;
+    float:left;
+}
 #DirectorPages{
-    width: 540px;
-    height: 650px;
+    
+    width: 100%;
+    height: 850px;
     margin: auto;
-
+    float:right;
     padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 50px;
@@ -25,56 +33,59 @@ body {
     width:550px;
     height: 50px;
     margin: auto;
+    margin-top:50px;
 }
-#navbar-director ul {
-    display: block;
-    list-style-type: disc;
-    -webkit-margin-before: 1em;
-    -webkit-margin-after: 1em;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
-     -webkit-padding-start: 0px;
+.DirectorLink ul{
+display: block;
+list-style-type: disc;
 }
-
-#navbar-director ul li { display: inline; 
-
+.DirectorLink ul li{
+    display: inline;
 }
-
-#navbar-director ul li a
-{
-text-decoration: none;
-padding: .2em 1em;
-color: #fff;
-background-color: #036;
+.DirectorLink ul li a{
+    text-decoration: none;
+    color: #fff;
+    background-color: #036;
 }
 
-#navbar-director ul li a:hover
+.DirectorLink ul li a:hover
 {
 color: #fff;
 background-color: #369;
 }
 
+#CalandarBackGround{
+    width:550px;
+    height: 50px;
+    margin: auto;
+}
+footer{
+    clear:both;
+}
 
-.PeopleLable{
-    
-    width: 160px;
-}
-.PerformerList{
-    height: 230px;
-    width: 150px;
-}
-td{
+td {
     text-align:center;
     vertical-align: top;
-    padding:2px;
+    padding-right:2px;
+    padding-left:2px;
+    padding-top:5px;
+    padding-bottom:5px;
     
+ 
 }
 
-#GridViewAvailable{
-    background-color: #EEEEEE;
+.ButtonAddPerformers td {
+    text-align:right;
+    vertical-align: top;
+    padding:5px;
 }
-#GridViewNotAvailable{
+#GridViewAvailable td{
     background-color: #EEEEEE;
+    width:auto;
+}
+#GridViewPerforming td{
+    background-color: #EEEEEE;
+    width:auto;
 }
 .NextButton{
     text-align:right;
@@ -87,24 +98,37 @@ td{
 
 
 
-    <div id="spacertopbar"></div>
-    <img id="default" alt="bg image" longdesc="background image"src="Resources/TorlageFinal.jpg" />
+<div id="fill">
+    
+  <div id ="DirectorPages">
+            <div id="picture">
+                <img width="350" height="500" alt="bg image" longdesc="background image"src="Resources/TorlageFinal.jpg" />
+            </div>
 
-
-
-        <div id ="DirectorPages">
-        <div id="navbar-director">
-            <ul>
-                <li><a runat="server" href="~/DirectorShow">Set Show Date</a></li>
-                <li><a runat="server" href="~/DirectorSelectPerformers">Select Performers</a></li>
-           <!-- <li><a runat="server" href="~/CreateShowList">Create Show List</a></li>
-                <li><a runat="server" href="~/ReviewShowList">Review Show List</a></li>
-            -->
-            </ul>
-        </div>
+       
         <div class ="CalandarBackGround">
         <table>
-            
+            <tr>
+                <td>
+                    <div class="DirectorLink">
+                        <ul >
+                             <li><a runat="server" href="~/DirectorShow">Set Show Date</a></li>
+                             <li><a runat="server" href="~/DirectorSelectPerformers">Select Performers</a></li>
+           
+                         </ul>
+                  </div>
+
+                </td>
+                <td>
+                    
+                    <asp:Button ID="ButtonNextPage" runat="server" Text="Create Set List" OnClick="ButtonNextPage_Click" Visible ="false" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <asp:Label ID="LabelTitleName" runat="server" Text="Select Performers" Font-Bold="True" Font-Size="Large" Height="20px"></asp:Label>
+                </td>
+            </tr>
             <tr>
                 <td>
                 <asp:Label ID="LabelDate" runat="server" Text="Date: "></asp:Label>
@@ -112,8 +136,9 @@ td{
                 <asp:Button ID="ButtonGetDate" runat="server" Text="Get Availability" OnClick="ButtonGetDate_Click" />
                 </td>
                 <td class ="PeopleLable">
-                      <asp:Label ID="LabelNoPerformerList" runat="server" Text="NOT Available"></asp:Label>
+                      <asp:Label ID="LabelNoPerformerList" runat="server" Text=" "></asp:Label>
                 </td>
+                
                 
             </tr>
             <tr>
@@ -121,12 +146,10 @@ td{
                 <td>
                     <asp:Calendar ID="CalendarShowDate" BackColor="White" runat="server" OnSelectionChanged="Calendar1_SelectionChanged" Height="237px" Width="320px" OnDayRender="CalendarShowDate_DayRender"></asp:Calendar>
                 </td>
-                     <!---display of performers Not available-->
-                    <td>
-                       
-                    
+                
+                <!---display of performers Scheduled-->
+                <td>    
                        <div class ="PerformerList">
-                           
                 
                        <asp:PlaceHolder ID="PlaceHolderNotAvailable" runat="server">
                            <asp:SqlDataSource ID="SqlDataSourceNotAvailable" runat="server"
@@ -134,46 +157,34 @@ td{
                                 SelectCommand="SELECT PerformerName
                                             FROM [PerformersAvailable] LEFT JOIN [Performers]
                                             on PerformersAvailable.PerformerID = Performers.PerformerID
-                                            where ( ScheduleDate = @PerformeanceDate) AND (Available = 0)">
+                                            where ( ScheduleDate = @PerformeanceDate) AND (PenciledToPerform = 1)">
                                 <SelectParameters>
                                     <asp:ControlParameter Name="PerformeanceDate" Type="String" 
                                         ControlID="TextboxShowDate" PropertyName="Text" />
                                 </SelectParameters>
                            </asp:SqlDataSource>
                         </asp:PlaceHolder>
-                        <asp:GridView ID="GridView2" runat="server"  DataKeyNames="PerformerName" DataSourceID="SqlDataSourceNotAvailable" >                    
+                        <asp:GridView ID="GridViewPerforming" runat="server" autogeneratecolumns="false" DataKeyNames="PerformerName" DataSourceID="SqlDataSourceNotAvailable" >                    
                             <Columns>
-                            <asp:TemplateField>
-                                <ItemTemplate>
-                                    <!--<%# Eval("PerformerName") %>-->        
-                                </ItemTemplate>
-                            </asp:TemplateField>         
+                                <asp:boundfield datafield="PerformerName" readonly="true" headertext="Scheduled To Perform"/>
+                            
                             </Columns>
                         </asp:GridView>
                         </div>
-                    </td>
-                    <!---end of display of performers NOT-->
-
-            </tr>
-        </table>
-        </div>
-        
-        <div class ="SelectPerformers">
-        <table >
-            <tr>
-                <td>
-                    <asp:Label ID="LabelTitleName" runat="server" Text="Select Performers" Font-Bold="True" Font-Size="Large" Height="20px"></asp:Label>
+                    
                 </td>
-
+                <!---end of display of performers Scheduled-->
             </tr>
             <tr>
-                <td class ="PeopleLable"><asp:Label ID="LabelSelectTable" runat="server" Text="Performers Available"></asp:Label></td>
-                <td></td>
-                <td>
-                    <asp:Label ID="LabelDescriptionPerformersShedule" runat="server" Text="Performers Scheduled"></asp:Label>
+                
+                <td class="ButtonAddPerformers">
+                    <asp:Button ID="ButtonAddPerformers" runat="server" Text="Update Performers" OnClick="ButtonSelectPeople_Click" Height="30px" Width="131px" Visible ="false"/>
+                     <asp:Label ID="LabelAddPerformers" runat="server" Text=""></asp:Label>
                 </td>
+               
             </tr>
-            <tr>        
+            <tr>
+                                
                 <!--List of performers available-->
                 <td >
                     <div class ="PerformerAvailableList">
@@ -184,7 +195,6 @@ td{
                                             FROM [Performers] LEFT JOIN [PerformersAvailable]
                                             on Performers.PerformerID = PerformersAvailable.PerformerID
                                             where ( ScheduleDate = @PerformeanceDate) AND (Available = 1) AND Active = 1">
-
                                     <SelectParameters>
                                     <asp:ControlParameter Name="PerformeanceDate" Type="String" 
                                         ControlID="TextboxShowDate" PropertyName="Text" />
@@ -193,8 +203,7 @@ td{
                         </asp:PlaceHolder>
                         <asp:GridView ID="GridViewAvailablePerform" runat="server" autogeneratecolumns="false"  datakeynames="PerformerID,PerformerName" DataSourceID="SqlDataSourceAvailablePerformers" >                    
                             <Columns>
-                                <asp:boundfield datafield="PerformerID" readonly="true" headertext="ID"/>
-                                <asp:boundfield datafield="PerformerName" readonly="true" headertext="Performer Name"/>
+                                <asp:boundfield datafield="PerformerName" readonly="true" headertext="Available Performers"/>
                             <asp:TemplateField>
                             <ItemTemplate>
                                             <asp:CheckBox ID="CheckBoxSelectPerformer" runat="server" />            
@@ -204,42 +213,22 @@ td{
                         </asp:GridView>
                         
                    </div>
+
+                    
                 </td>
                 <!--end or List of Performers available-->
-                <!-- add lead singer -->
-                <td>
-                    <asp:Button ID="ButtonAddPerformers" runat="server" Text="Add Performers" OnClick="ButtonSelectPeople_Click" Height="30px" Width="131px" />
-                </td>
-                <td>       
-                    
-                    <div class ="PerformerAvailableList">
-                        <asp:Label ID="LabelAddPerformers" runat="server" Text=""></asp:Label>
-                    </div>
-                </td>
+                
 
-           
             </tr>
-
-
-
-
-            <tr>
-                <td colspan="2"></td>
-                <td>
-                    <div class="BottomNavigation">
-                     <asp:Button ID="ButtonBackPage" runat="server" Text="Back" OnClick="ButtonBackPage_Click" />
-                     <asp:Button ID="ButtonNextPage" runat="server" Text="Next" OnClick="ButtonNextPage_Click" />
-                    </div>
-                </td>
-            </tr>
+            
         </table>
         </div>
-        
+      
         
     </div>
 
 
-
+</div>
 
 
 </asp:Content>

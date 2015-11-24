@@ -13,6 +13,27 @@ namespace TorlageProjectApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+            if (Session["SelectedDate"] == null)
+            {
+                ;    
+            }
+            else
+            {
+                
+                
+                    ButtonAddPerformers.Visible = true;
+                    TextBoxShowDate.Text = (string)Session["SelectedDate"]; //set currentDate
+                    if (Session["LabelSelectedPerformers"] != null)
+                    {
+                        LabelAddPerformers.Text = (string)Session["LabelSelectedPerformers"];
+                    }
+                    if ((string)Session["SelectedDateButtonShow"] == "")
+                    {
+                        ButtonAddPerformers.Visible = false;
+                    }
+                
+            }
             var loggedInUser = User.Identity.Name;
             ValidateUser(loggedInUser);
 
@@ -146,8 +167,14 @@ namespace TorlageProjectApp
         /// <param name="e"></param>
         protected void Calendar1_SelectionChanged(object sender, EventArgs e)
         {
+            Session["SelectedDate"] = CalendarShowDate.SelectedDate.ToString();
+            Session["SelectedDateButtonShow"] = CalendarShowDate.SelectedDate.ToString();
+            Session["LabelSelectedPerformers"] = "";
+            LabelAddPerformers.Text = "";
             TextBoxShowDate.Text = CalendarShowDate.SelectedDate.ToString();
-
+            ButtonAddPerformers.Visible = true;
+           // ButtonBackPage.Visible = true;
+            ButtonNextPage.Visible = true;
         }
 
 
@@ -160,14 +187,14 @@ namespace TorlageProjectApp
         {
             LabelAddPerformers.Text = "";
             //Ading to the AspNetUserRoles table
-            SqlConnection connectionRemovePerformer = new SqlConnection();
+            /*SqlConnection connectionRemovePerformer = new SqlConnection();
             connectionRemovePerformer.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
             string removeCommand = "UPDATE PerformersAvailable SET PenciledToPerform  = 0 Where ScheduleDate = '" + TextBoxShowDate.Text + "'";
             SqlCommand commandRemove = new SqlCommand(removeCommand, connectionRemovePerformer);
             connectionRemovePerformer.Open();
             commandRemove.ExecuteNonQuery();
             connectionRemovePerformer.Close();
-
+            */
             foreach (GridViewRow row in GridViewAvailablePerform.Rows)
             {
                 CheckBox checkbox = (CheckBox)row.FindControl("CheckBoxSelectPerformer");
@@ -191,7 +218,29 @@ namespace TorlageProjectApp
                     //int PerformerName = Convert.ToInt32(GridView1.DataKeys[row.RowIndex].Value);
                     LabelAddPerformers.Text += Performer + ", " + performerID.ToString() + "<br>";
                 }
+                else
+                {
+                    int performerID = Convert.ToInt32(GridViewAvailablePerform.DataKeys[row.RowIndex].Values["PerformerID"]);
+                    // Retreive the Performer Name
+                    string Performer = (String)(GridViewAvailablePerform.DataKeys[row.RowIndex].Values["PerformerName"]);
+                    // Retreive the Employee ID
+
+                    //Ading to the AspNetUserRoles table
+                    SqlConnection connectionAddPerformer = new SqlConnection();
+                    connectionAddPerformer.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
+                    string insertCommand = "UPDATE PerformersAvailable SET PenciledToPerform  = 0 Where ScheduleDate = '" + TextBoxShowDate.Text + "' AND PerformerID = " + performerID + "";
+                    SqlCommand commandAdd = new SqlCommand(insertCommand, connectionAddPerformer);
+                    connectionAddPerformer.Open();
+                    commandAdd.ExecuteNonQuery();
+                    connectionAddPerformer.Close();
+
+                }
             }
+            LabelAddPerformers.Text = "Performers Added";
+            Session["LabelSelectedPerformers"] = LabelAddPerformers.Text;
+            ButtonAddPerformers.Visible = false;
+            Session["SelectedDateButtonShow"] = "";
+            Response.Redirect("~/DirectorSelectPerformers");
 
         }
 
@@ -200,11 +249,7 @@ namespace TorlageProjectApp
             Response.Redirect("~/CreateShowList");
         }
 
-        protected void ButtonBackPage_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/DirectorShow");
-        }
-
+        
 
         
 

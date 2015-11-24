@@ -1,60 +1,81 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DirectorShow.aspx.cs" Inherits="TorlageProjectApp.DirectorShow" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 <style type="text/css">
 
 body {
-    margin: auto;
-    width: 100%;
     
+    margin: auto;
+    width: 100%;    
     margin: 0;
     font-family: Arial;
 
 }  
 
+#picture{   
+    width:355px;
+    margin-right:20px;
+    float:left;
+}
 #DirectorPages{
-    width: 540px;
-    height: 650px;
+    
+    width: 100%;
+    height: 850px;
     margin: auto;
-
+    float:right;
     padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 50px;
     padding-right: 50px;
 }
-#navbar-director{
-    width:550px;
-    height: 50px;
-    margin: auto;
-}
-#navbar-director ul {
-    display: block;
-    list-style-type: disc;
-    -webkit-margin-before: 1em;
-    -webkit-margin-after: 1em;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
-     -webkit-padding-start: 0px;
-}
 
-#navbar-director ul li { display: inline; 
 
+.DirectorLink ul{
+display: block;
+list-style-type: disc;
+}
+.DirectorLink ul li{
+    display: inline;
+}
+.DirectorLink ul li a{
+    text-decoration: none;
+    color: #fff;
+    background-color: #036;
 }
 
-#navbar-director ul li a
-{
-text-decoration: none;
-padding: .2em 1em;
-color: #fff;
-background-color: #036;
-}
-
-#navbar-director ul li a:hover
+.DirectorLink ul li a:hover
 {
 color: #fff;
 background-color: #369;
 }
 
+#CalandarBackGround{
+    width:550px;
+    height: 50px;
 
+}
+footer{
+    clear:both;
+}
+
+td {
+    text-align:center;
+    vertical-align: top;
+    padding:2px;
+}
+
+
+#GridViewAvailable td{
+    background-color: #EEEEEE;
+    width:auto;
+}
+#GridViewPerforming td{
+    background-color: #EEEEEE;
+    width:auto;
+}
+.NextButton{
+    text-align:right;
+     vertical-align: bottom;
+}
 .PeopleLable{
     
     width: 160px;
@@ -63,44 +84,34 @@ background-color: #369;
     height: 230px;
     width: 150px;
 }
-td{
-    text-align:center;
-    vertical-align: top;
-    padding:2px;
-    
-}
-
-#GridViewAvailable{
-    background-color: #EEEEEE;
-}
-#GridViewNotAvailable{
-    background-color: #EEEEEE;
-}
-.NextButton{
-    text-align:right;
-     vertical-align: bottom;
-}
-
 
 </style>
-<div id="spacertopbar"></div>
-    <img id="default" alt="bg image" longdesc="background image" src="Resources/TorlageFinal.jpg" />
     
     <div id="DirectorPages">
-        <div id="navbar-director">
-            <ul>
-                <li><a runat="server" href="~/DirectorShow">Set Show Date</a></li>
-                <li><a runat="server" href="~/DirectorSelectPerformers">Select Performers</a></li>
-          <!--      <li><a runat="server" href="~/CreateShowList">Create Show List</a></li>
-                <li><a runat="server" href="~/ReviewShowList">Review Show List</a></li>
-            -->
-            </ul>
+        <div id="picture">
+            <img width="350" height="500" alt="bg image" longdesc="background image"src="Resources/TorlageFinal.jpg" />
         </div>
+
+        
         <div>
             <table>
                 <tr>
+                   
+                <td colspan="2">
+                    <div class="DirectorLink">
+                        <ul >
+                             <li><a runat="server" href="~/DirectorShow">Set Show Date</a></li>
+                             <li><a runat="server" href="~/DirectorSelectPerformers">Select Performers</a></li>
+           
+                         </ul>
+                  </div>
+
+                </td>
+            
+                </tr>
+                <tr>
                     <td colspan ="2">
-                        <asp:Label ID="LabelSetShowDate" runat="server" Text="Set Show Date"></asp:Label>
+                        <asp:Label ID="LabelSetShowDate" runat="server" Font-Bold="True" Font-Size="Large" Height="20px" Text="Set Show Date"></asp:Label>
 
                     </td>
                     
@@ -141,7 +152,7 @@ td{
                     </td>
 
                 </tr>
-<!--                <tr>
+                <tr>
                     <td class ="PeopleLable">
                         <asp:Label ID="LabelPerformersList" runat="server" Text="Available"></asp:Label>
                     </td>
@@ -152,7 +163,7 @@ td{
 
                     </td>
                 </tr>
--->
+
                 <tr>
                     <!---display of performers available-->
                     <td>
