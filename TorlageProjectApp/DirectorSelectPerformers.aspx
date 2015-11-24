@@ -66,7 +66,10 @@ footer{
 td {
     text-align:center;
     vertical-align: top;
-    padding:5px;
+    padding-right:2px;
+    padding-left:2px;
+    padding-top:5px;
+    padding-bottom:5px;
     
  
 }

@@ -11,8 +11,7 @@ body {
 
 }  
 
-#picture{
-   
+#picture{   
     width:355px;
     margin-right:20px;
     float:left;
@@ -28,6 +27,7 @@ body {
     padding-left: 50px;
     padding-right: 50px;
 }
+
 
 .DirectorLink ul{
 display: block;
@@ -51,7 +51,7 @@ background-color: #369;
 #CalandarBackGround{
     width:550px;
     height: 50px;
-    margin: auto;
+
 }
 footer{
     clear:both;
@@ -61,15 +61,9 @@ td {
     text-align:center;
     vertical-align: top;
     padding:2px;
-    
- 
 }
 
-.ButtonAddPerformers td {
-    text-align:right;
-    vertical-align: top;
-    padding:5px;
-}
+
 #GridViewAvailable td{
     background-color: #EEEEEE;
     width:auto;
@@ -82,8 +76,13 @@ td {
     text-align:right;
      vertical-align: bottom;
 }
+.PeopleLable{
+    
+    width: 160px;
+}
 .PerformerList{
-  
+    height: 230px;
+    width: 150px;
 }
 
 </style>
@@ -98,7 +97,7 @@ td {
             <table>
                 <tr>
                    
-                <td>
+                <td colspan="2">
                     <div class="DirectorLink">
                         <ul >
                              <li><a runat="server" href="~/DirectorShow">Set Show Date</a></li>
@@ -112,7 +111,7 @@ td {
                 </tr>
                 <tr>
                     <td colspan ="2">
-                        <asp:Label ID="LabelSetShowDate" runat="server" Text="Set Show Date"></asp:Label>
+                        <asp:Label ID="LabelSetShowDate" runat="server" Font-Bold="True" Font-Size="Large" Height="20px" Text="Set Show Date"></asp:Label>
 
                     </td>
                     
@@ -153,7 +152,7 @@ td {
                     </td>
 
                 </tr>
-<!--                <tr>
+                <tr>
                     <td class ="PeopleLable">
                         <asp:Label ID="LabelPerformersList" runat="server" Text="Available"></asp:Label>
                     </td>
@@ -164,7 +163,7 @@ td {
 
                     </td>
                 </tr>
--->
+
                 <tr>
                     <!---display of performers available-->
                     <td>
