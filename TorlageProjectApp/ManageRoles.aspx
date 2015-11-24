@@ -3,30 +3,40 @@
 
 <style type="text/css">
 body {
+    
     margin: auto;
-    width: 100%;
+    width: 100%;    
     margin: 0;
     font-family: Arial;
 
 }  
 
+#picture{
+   
+    width:355px;
+    margin-right:20px;
+    float:left;
+}
 #DirectorPages{
-    width: 540px;
-    height: 650px;
+    
+    width: 100%;
+    height: 850px;
     margin: auto;
-
+    float:right;
     padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 50px;
     padding-right: 50px;
 }
+
+
 </style>
 
-    <div id="spacertopbar"></div>
-    <img id="default" alt="bg image" longdesc="background image"src="Resources/TorlageFinal.jpg" />
-
     <div id="DirectorPages">
-    <table>
+        <div id="picture">
+                <img width="350" height="500" alt="bg image" longdesc="background image"src="Resources/TorlageFinal.jpg" />
+        </div>
+        <table>
                 <tr>
                 <!--List of performers available-->
                 <td >
