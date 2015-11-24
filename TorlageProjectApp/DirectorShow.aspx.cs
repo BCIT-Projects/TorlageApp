@@ -285,6 +285,7 @@ namespace TorlageProjectApp
                     drow["PerformerID"] = entry;
                     drow["Available"] = "1";
                     drow["TentativeShow"] = "1";
+                    drow["PenciledToPerform"] = "0";
                     ds.Tables["PerformersAvailable"].Rows.Add(drow);
                     da.Update(ds, "PerformersAvailable");
 
