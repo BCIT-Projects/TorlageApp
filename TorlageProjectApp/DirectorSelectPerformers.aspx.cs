@@ -162,7 +162,7 @@ namespace TorlageProjectApp
             //Ading to the AspNetUserRoles table
             SqlConnection connectionRemovePerformer = new SqlConnection();
             connectionRemovePerformer.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
-            string removeCommand = "Delete Shows Where Date = '" + TextBoxShowDate.Text + "'";
+            string removeCommand = "UPDATE PerformersAvailable SET PenciledToPerform  = 0 Where ScheduleDate = '" + TextBoxShowDate.Text + "'";
             SqlCommand commandRemove = new SqlCommand(removeCommand, connectionRemovePerformer);
             connectionRemovePerformer.Open();
             commandRemove.ExecuteNonQuery();
@@ -181,7 +181,7 @@ namespace TorlageProjectApp
                     //Ading to the AspNetUserRoles table
                     SqlConnection connectionAddPerformer = new SqlConnection();
                     connectionAddPerformer.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
-                    string insertCommand = "INSERT INTO Shows (Date, PerformerID) VALUES('" + TextBoxShowDate.Text + "', '" + performerID + "')";
+                    string insertCommand = "UPDATE PerformersAvailable SET PenciledToPerform  = 1 Where ScheduleDate = '" + TextBoxShowDate.Text + "' AND PerformerID = " + performerID + "";
                     SqlCommand commandAdd = new SqlCommand(insertCommand, connectionAddPerformer);
                     connectionAddPerformer.Open();
                     commandAdd.ExecuteNonQuery();
