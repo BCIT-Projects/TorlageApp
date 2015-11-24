@@ -5,15 +5,6 @@ body {
     background-color: #F0F0F0;
 }
 
-#default {
-  position: fixed;
-  max-height: 100%;
-  left: 0;
-  right: 0;
-	
-  /* Preserve aspect ratio */
-  min-height: 100%;
-}
 
 
 /* Wrapping element */
@@ -22,6 +13,8 @@ body {
     padding-left: 15px;
     padding-right: 15px;
 }
+
+    </style>
 
 /* Set widths on the form inputs since otherwise they're 100% wide */
 input[type="text"],
@@ -39,3 +32,4 @@ input[type="email"] {
         padding: 0;
     }
 }
+

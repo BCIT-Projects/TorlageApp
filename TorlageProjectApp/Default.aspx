@@ -3,6 +3,18 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
+    <style>
+#default {
+  position: fixed;
+  max-height: 100%;
+  left: 0;
+  right: 0;
+	
+  /* Preserve aspect ratio */
+  min-height: 100%;
+}
+
+    </style>
     
 
   
