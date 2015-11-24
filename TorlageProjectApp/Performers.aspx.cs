@@ -345,12 +345,15 @@ namespace TorlageProjectApp
             showdateStyle.BorderColor = System.Drawing.Color.Blue;
             showdateStyle.BorderWidth = 6;
 
+            // Display a blue border for the tentativeshowdate
+            Style penciledshowdateStyle = new Style();
+            penciledshowdateStyle.BackColor = System.Drawing.Color.Blue;
 
             //establish an connection to the SQL server 
             SqlConnection connection = new SqlConnection();
             connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
             string selectCommand = "SELECT PerformersAvailable.AvailableID, Performers.PerformerName, PerformersAvailable.ScheduleDate, " +
-                "PerformersAvailable.Available, PerformersAvailable.TentativeShow " +
+                "PerformersAvailable.Available, PerformersAvailable.TentativeShow, PerformersAvailable.PenciledToPerform " +
                 "FROM PerformersAvailable " +
                 "INNER JOIN Performers " +
                 "ON PerformersAvailable.PerformerID = Performers.PerformerID " +
@@ -369,6 +372,7 @@ namespace TorlageProjectApp
                     DateTime dateTime = (DateTime)reader["ScheduleDate"];
                     byte value = (byte)reader["Available"];
                     byte value2 = (byte)reader["TentativeShow"];
+                    byte value3 = (byte)reader["PenciledToPerform"];
                     if (value == 1)
                     {
                         availability = true;
@@ -387,6 +391,15 @@ namespace TorlageProjectApp
                         tentativeshowDate = false;
                     }
 
+                    if (value3 == 1)
+                    {
+                        penciled = true;
+                    }
+                    else
+                    {
+                        penciled = false;
+                    }
+
                     // do this somehow
                     if ((e.Day.Date >= new DateTime(dateTime.Year, dateTime.Month, dateTime.Day)) &&
                         (e.Day.Date <= new DateTime(dateTime.Year, dateTime.Month, dateTime.Day)))
@@ -402,6 +415,10 @@ namespace TorlageProjectApp
                         if (tentativeshowDate)
                         {
                             e.Cell.ApplyStyle(showdateStyle);
+                        }
+                        if (penciled)
+                        {
+                            e.Cell.ApplyStyle(penciledshowdateStyle);
                         }
                     }
                 }
