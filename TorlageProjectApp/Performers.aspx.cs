@@ -94,13 +94,13 @@ namespace TorlageProjectApp
         protected void CalendarChangeAvailability_SelectionChanged(object sender, EventArgs e)
         {
 
-            TextBoxChangeAvailability.Text = CalendarChanageAvailability.SelectedDate.ToShortDateString();
+            TextBoxChangeAvailability.Text = CalendarChangeAvailability.SelectedDate.ToShortDateString();
             LabelUserAlreadyClickedAvailability.Text = "";
             //establish an connection to the SQL server 
             SqlConnection connection = new SqlConnection();
             connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
             string selectCommand = "SELECT PerformersAvailable.AvailableID, Performers.PerformerName, PerformersAvailable.ScheduleDate, " +
-                "PerformersAvailable.Available " +
+                "PerformersAvailable.Available, PerformersAvailable.PenciledToPerform " +
                 "FROM PerformersAvailable " +
                 "INNER JOIN Performers " +
                 "ON PerformersAvailable.PerformerID = Performers.PerformerID " +
@@ -117,12 +117,24 @@ namespace TorlageProjectApp
                 while (reader.Read())
                 {
                     byte value = (byte)reader["Available"];
+                    byte value1 = (byte)reader["PenciledToPerform"];
                     if (value == 1)
                     {
                         //LabelUserAlreadyClickedAvailability.Text = "You already entered that you were available. Are you available?";
                     }
                     else
                     {
+                        //LabelUserAlreadyClickedAvailability.Text = "You already entered that you were not available. Are you available?";
+                    }
+                    if (value1 == 1)
+                    {
+                        ButtonYes.Visible = false;
+                        ButtonNo.Visible = false;
+                    }
+                    else
+                    {
+                        ButtonYes.Visible = true;
+                        ButtonNo.Visible = true;
                         //LabelUserAlreadyClickedAvailability.Text = "You already entered that you were not available. Are you available?";
                     }
                 }
@@ -142,7 +154,7 @@ namespace TorlageProjectApp
         protected void ButtonYes_Click(object sender, EventArgs e)
         {
             bool foundRecordOnDate = false;
-            TextBoxChangeAvailability.Text = CalendarChanageAvailability.SelectedDate.ToString();
+            TextBoxChangeAvailability.Text = CalendarChangeAvailability.SelectedDate.ToString();
 
             // need to find if record exists
             //establish an connection to the SQL server 
@@ -230,7 +242,7 @@ namespace TorlageProjectApp
         protected void ButtonNo_Click(object sender, EventArgs e)
         {
             bool foundRecordOnDate = false;
-            TextBoxChangeAvailability.Text = CalendarChanageAvailability.SelectedDate.ToString();
+            TextBoxChangeAvailability.Text = CalendarChangeAvailability.SelectedDate.ToString();
 
             // need to find if record exists
             //establish an connection to the SQL server 

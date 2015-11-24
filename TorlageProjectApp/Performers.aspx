@@ -17,7 +17,7 @@
             <div id="calendar">
                 <asp:TextBox ID="TextBoxChangeAvailability" runat="server" Width="371px"></asp:TextBox>
 
-                <asp:Calendar ID="CalendarChanageAvailability" runat="server" OnSelectionChanged="CalendarChangeAvailability_SelectionChanged" 
+                <asp:Calendar ID="CalendarChangeAvailability" runat="server" OnSelectionChanged="CalendarChangeAvailability_SelectionChanged" 
                     Style="min-height:400px; Width:371px;" BackColor="White" OnDayRender="CalendarChanageAvailability_DayRender"></asp:Calendar>
             </div>
             <asp:SqlDataSource ID="SqlTorlageDatabase" runat="server" 
