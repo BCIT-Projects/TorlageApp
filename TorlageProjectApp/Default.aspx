@@ -14,6 +14,16 @@
   min-height: 100%;
 }
 
+.body-content {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+#picture{   
+    width:355px;
+    margin-right:20px;
+    float:left;
+}
+
     </style>
     
 
@@ -25,7 +35,11 @@
 
   
     <div id="spacertopbar"></div>
-    <img id="default" alt="bg image" longdesc="background image"src="Resources/TorlageFinal.jpg" />
+        <div id="picture">
+            <img width="350" height="500" alt="bg image" longdesc="background image"src="Resources/TorlageFinal.jpg" />
+        </div>
+
+    <!--img id="default" alt="bg image" longdesc="background image"src="Resources/TorlageFinal.jpg" /-->
     <!--img alt="bg image" longdesc="background image" src="Resources/Torlage1.jpg" style="width: 1166px; height: 619px"/-->
     
 
