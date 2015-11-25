@@ -1,6 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Performers.aspx.cs" Inherits="TorlageProjectApp.Performers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    
+    <h2><%: Title %></h2>
 
+    <div class="row">
+        <div class="col-md-8">
+            <section id="loginForm">
+                <div class="form-horizontal">
+                    <h4>Pick a date on the calender. Click 'Available' or 'Not Available' button below to say if available on that date.</h4>
+                    <hr />
     <div id="wrapper">
     
         <div class="colorBehindLabel">
@@ -11,7 +19,7 @@
 
 
             <div id="instructions">
-                <asp:Label ID="LabelInstructions" runat="server" Text="Pick a date on the calender. Click 'Available' or 'Not Available' button below to say if available on that date."></asp:Label>
+                <asp:Label ID="LabelInstructions" runat="server" Text=""></asp:Label>
             </div>
 
             <div id="calendar">
