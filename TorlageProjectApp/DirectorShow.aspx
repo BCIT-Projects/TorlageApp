@@ -9,11 +9,18 @@ body {
     margin: 0;
     font-family: Arial;
 
-}  
+} 
+ 
+.body-content {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+
 
 #picture{   
     width:355px;
-    margin-right:20px;
+    margin-right:100px;
     float:left;
 }
 #DirectorPages{
@@ -22,12 +29,11 @@ body {
     height: 850px;
     margin: auto;
     float:right;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 50px;
     padding-right: 50px;
 }
-
+.directorContent{
+   margin-top:20px;
+}
 
 .DirectorLink ul{
 display: block;
@@ -94,7 +100,7 @@ td {
 
         
         <div>
-            <table>
+            <table class="directorContent">
                 <tr>
                    
                 <td colspan="2">

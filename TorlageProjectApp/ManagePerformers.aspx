@@ -9,11 +9,16 @@ body {
     font-family: Arial;
 
 }  
+.body-content {
+    padding-left: 0px;
+    padding-right: 0px;
+}
 
-#picture{
-   
+
+
+#picture{   
     width:355px;
-    margin-right:20px;
+    margin-right:100px;
     float:left;
 }
 #DirectorPages{
@@ -22,12 +27,11 @@ body {
     height: 850px;
     margin: auto;
     float:right;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 50px;
     padding-right: 50px;
 }
-
+.directorContent{
+    margin-top:20px;
+}
 </style>
 
     
@@ -36,7 +40,7 @@ body {
                 <img width="350" height="500" alt="bg image" longdesc="background image"src="Resources/TorlageFinal.jpg" />
         </div>
 
-    <table>
+    <table class="directorContent">
                 <tr>
                 <!--List of performers available-->
                 <td >
