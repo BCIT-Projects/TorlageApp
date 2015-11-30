@@ -126,7 +126,7 @@ background-color: #369;
             <tr>
                 <!--Calendar-->
                 <td>
-                    <asp:Calendar ID="CalendarShowDate" BackColor="White" runat="server" OnSelectionChanged="Calendar1_SelectionChanged" Height="237px" Width="320px"></asp:Calendar>
+                    <asp:Calendar ID="CalendarShowDate" BackColor="White" runat="server" OnSelectionChanged="Calendar1_SelectionChanged" Height="237px" Width="320px" OnDayRender="CalendarShowDate_DayRender"></asp:Calendar>
                 </td>
                      <!---display of performers Not available-->
                     <td>

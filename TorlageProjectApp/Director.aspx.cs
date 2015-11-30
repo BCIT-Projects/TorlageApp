@@ -14,76 +14,8 @@ namespace TorlageProjectApp
     public partial class Director : System.Web.UI.Page
     {
 
-        protected void CalendarShowDate_DayRender(object sender, DayRenderEventArgs e)
-        {
-            // Display vacation dates in yellow boxes with purple borders.
-            Style ShowDateStyle = new Style();
-            ShowDateStyle.BackColor = System.Drawing.Color.Green;
-            ShowDateStyle.BorderColor = System.Drawing.Color.White;
-            ShowDateStyle.BorderWidth = 3;
-            DateTime myDate = new DateTime(2015, 11, 10);
-            if (e.Day.Date == new DateTime(myDate.Year, myDate.Month, myDate.Day))
-            {
-                e.Cell.ApplyStyle(ShowDateStyle);
-            }
-
-            /*
-            ArrayList showDates = new ArrayList();
-            DateTime myDate = new DateTime(2015,11,10);
-            
-            
-
-            SqlConnection connection = new SqlConnection();   //establish an connection to the SQL server 
-            connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
-            string selectCommand = "SELECT Distinct ScheduleDate FROM PerformersAvailable where TentativeShow = 1";
-
-            SqlCommand command = new SqlCommand(selectCommand, connection);
-
-            connection.Open();
-            SqlDataReader reader = null;
-            try
-            {
-                reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-
-//                    DateTime date1;
-                    //myDate = reader.GetDateTime(1);
-                    //DateTime.TryParse((string)reader["SheduleDate"], out myDate);
-                   // myDate = (DateTime)reader["SheduleDate"];
-//                    showDates.Add((DateTime)reader["SheduleDate"]);
-
-                    if (e.Day.Date == new DateTime(myDate.Year, myDate.Month, myDate.Day))
-                    {
-                        e.Cell.ApplyStyle(vacationStyle);
-                    }
-                    reader.Close();
-                    connection.Close();
-                }
-
-            }
-
-
-            catch (Exception ex)
-            {
-                LabelShowOrNoShow.Text = "asdkfaldskflsdf";
-                
-
-            }
-
-            
-            foreach (DateTime entry in showDates)
-            {
-                
-                    e.Cell.ApplyStyle(vacationStyle);
-            }
-            */
-
-
-        }
-
         /// <summary>
-        /// 
+        /// Page load event.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -93,12 +25,84 @@ namespace TorlageProjectApp
             if (!IsPostBack)
             {
                 //Session["ExistanceofShow"] = (byte)22;
-               
-                    ;
+
+                ;
             }
-            
-            
+
+
         }
+
+        
+
+        /// <summary>
+        /// Displaying set shows in green
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void CalendarShowDate_DayRender(object sender, DayRenderEventArgs e)
+        {
+            
+            bool tentativeshowDate = false;
+
+            // Display Show Scheduled.
+            Style ShowExists = new Style();
+            ShowExists.BackColor = System.Drawing.Color.Green;
+            ShowExists.BorderColor = System.Drawing.Color.White;
+            ShowExists.BorderWidth = 3;
+
+            //establish an connection to the SQL server 
+            SqlConnection connection = new SqlConnection();
+            connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
+            string selectCommand = "SELECT Distinct ScheduleDate, TentativeShow " +
+                                    "FROM PerformersAvailable "+
+                                    "WHERE PerformersAvailable. TentativeShow = 1";
+            SqlCommand command = new SqlCommand(selectCommand, connection);
+            connection.Open();
+            SqlDataReader reader = null;
+            try
+            {
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    DateTime dateTime = (DateTime)reader["ScheduleDate"];
+                    byte value2 = (byte)reader["TentativeShow"];
+
+                    if (value2 == 1)
+                    {
+                        tentativeshowDate = true;
+                    }
+                    
+
+                    // do this somehow
+                    if ((e.Day.Date >= new DateTime(dateTime.Year, dateTime.Month, dateTime.Day)) &&
+                        (e.Day.Date <= new DateTime(dateTime.Year, dateTime.Month, dateTime.Day)))
+                    {
+                        if (tentativeshowDate)
+                        {
+                            e.Cell.ApplyStyle(ShowExists);
+                        }
+
+                        
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LabelError.Text = "Caught Exception " + ex.ToString();
+            }
+            finally
+            {
+                reader.Close();
+                connection.Close();
+            }
+
+            
+
+
+
+        }
+
+
 
 
         /// <summary>
@@ -114,6 +118,7 @@ namespace TorlageProjectApp
             ButtonSetShow.Visible = true;
             ButtonRemoveSetShow.Visible = true;
             LabelShowOrNoShow.Text = "No Show";
+            LabelError.Text = "";
             byte showExists = 0;
 
             SqlConnection connection = new SqlConnection();   //establish an connection to the SQL server 
@@ -191,7 +196,6 @@ namespace TorlageProjectApp
                 SqlConnection connection = new SqlConnection();   //establish an connection to the SQL server 
                 connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
                 string selectCommand = "SELECT * FROM Performers WHERE Performers.Active = 1 AND PerformerID NOT IN (select PerformerID from PerformersAvailable where ScheduleDate ='" + TextBoxSetShowDate.Text + "')";
-
                 SqlCommand command = new SqlCommand(selectCommand, connection);
 
                 connection.Open();

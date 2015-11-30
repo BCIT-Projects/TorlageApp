@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace TorlageProjectApp
 {
-    public partial class PerformersNumbers : System.Web.UI.Page
+    public partial class PerformersNumbers1 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -11,10 +11,83 @@ namespace TorlageProjectApp
     public partial class PerformersAvailability : System.Web.UI.Page
     {
         bool available = false;
+        int userCurrentlyLoggedIn;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var loggedInUser = User.Identity.Name;
+            ValidateUser(loggedInUser);
 
+
+        }
+
+        private void ValidateUser(string UserName)
+        {
+
+            var loggedInUser = User.Identity.Name;
+            string constr = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(constr);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("Select  AspNetUsers.Id, UserName, RoleId " +
+                                            "From AspNetUsers Left Join AspNetUserRoles " +
+                                            "on AspNetUsers.Id = AspNetUserRoles.UserId " +
+                                            "Where UserName = '" + UserName +
+                                            "'AND (RoleId = 'performer')", con);
+
+            try
+            {
+                SqlDataReader rd = cmd.ExecuteReader();
+                if (rd.Read())
+                {
+                    //int u = Convert.ToInt32(rd["Id"]);
+                    //return u;
+                    string u = (String)rd["Id"];
+                    updateTextBox(u);
+
+                }
+                else
+                {
+                    Response.Redirect("~/");
+                }
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        protected void updateTextBox(string username)
+        {
+            //establish an connection to the SQL server 
+            SqlConnection connection = new SqlConnection();
+            connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
+            string selectCommand = "SELECT * " +
+                "FROM Performers " +
+                "WHERE Performers.LogInUserID = '" + username + "'";
+            SqlCommand command = new SqlCommand(selectCommand, connection);
+            connection.Open();
+            SqlDataReader reader = null;
+            try
+            {
+                reader = command.ExecuteReader();
+
+
+                while (reader.Read())
+                {
+                    int value = (int)reader["PerformerID"];
+                    userCurrentlyLoggedIn = value;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                LabelUserAlreadyClickedAvailability.Text = "Caught Exception " + ex.ToString();
+            }
+            finally
+            {
+                reader.Close();
+                connection.Close();
+            }
         }
 
         protected void CalendarChangeAvailability_SelectionChanged(object sender, EventArgs e)
@@ -30,8 +103,8 @@ namespace TorlageProjectApp
                 "FROM PerformersAvailable " +
                 "INNER JOIN Performers " +
                 "ON PerformersAvailable.PerformerID = Performers.PerformerID " +
-                "WHERE PerformersAvailable.ScheduleDate = '" + TextBoxChangeAvailability.Text + "' And Performers.PerformerName = '"
-                + TextBoxUser.Text + "'";
+                "WHERE PerformersAvailable.ScheduleDate = '" + TextBoxChangeAvailability.Text + "' And Performers.PerformerID = '"
+                + userCurrentlyLoggedIn + "'";
             SqlCommand command = new SqlCommand(selectCommand, connection);
             connection.Open();
             SqlDataReader reader = null;
@@ -45,11 +118,11 @@ namespace TorlageProjectApp
                     byte value = (byte)reader["Available"];
                     if (value == 1)
                     {
-                        LabelUserAlreadyClickedAvailability.Text = "You already entered that you were available. Are you available?";
+                        //LabelUserAlreadyClickedAvailability.Text = "You already entered that you were available. Are you available?";
                     }
                     else
                     {
-                        LabelUserAlreadyClickedAvailability.Text = "You already entered that you were not available. Are you available?";
+                        //LabelUserAlreadyClickedAvailability.Text = "You already entered that you were not available. Are you available?";
                     }
                 }
 
@@ -79,8 +152,8 @@ namespace TorlageProjectApp
                 "FROM PerformersAvailable " +
                 "INNER JOIN Performers " +
                 "ON PerformersAvailable.PerformerID = Performers.PerformerID " +
-                "WHERE PerformersAvailable.ScheduleDate = '" + TextBoxChangeAvailability.Text + "' And Performers.PerformerName = '"
-                + TextBoxUser.Text + "'";
+                "WHERE PerformersAvailable.ScheduleDate = '" + TextBoxChangeAvailability.Text + "' And Performers.PerformerID = '"
+                + userCurrentlyLoggedIn + "'";
             SqlCommand command = new SqlCommand(selectCommand, connection);
             connection.Open();
             SqlDataReader reader = null;
@@ -126,8 +199,8 @@ namespace TorlageProjectApp
                     "FROM PerformersAvailable " +
                     "INNER JOIN Performers " +
                     "ON PerformersAvailable.PerformerID = Performers.PerformerID " +
-                    "WHERE ScheduleDate = '" + TextBoxChangeAvailability.Text + "' AND Performers.PerformerName = '"
-                    + TextBoxUser.Text + "'";
+                    "WHERE ScheduleDate = '" + TextBoxChangeAvailability.Text + "' AND Performers.PerformerID = '"
+                    + userCurrentlyLoggedIn + "'";
                 SqlCommand command2 = new SqlCommand(updateCommand, connection2);
                 connection2.Open();
                 command2.ExecuteNonQuery();
@@ -140,7 +213,7 @@ namespace TorlageProjectApp
                 //establish an connection to the SQL server 
                 SqlConnection connection4 = new SqlConnection();
                 connection4.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
-                string selectQueryForUserName = "(SELECT PerformerID FROM Performers WHERE PerformerName = '" + TextBoxUser.Text + "'  AND Performers.Active = 1)";
+                string selectQueryForUserName = "(SELECT PerformerID FROM Performers WHERE PerformerID = '" + userCurrentlyLoggedIn + "'  AND Performers.Active = 1)";
                 string insertCommand = "INSERT INTO PerformersAvailable (ScheduleDate, PerformerID, Available, TentativeShow) VALUES('" + TextBoxChangeAvailability.Text + "', "
                     + selectQueryForUserName + ", 1, 0)";
                 SqlCommand command4 = new SqlCommand(insertCommand, connection4);
@@ -149,7 +222,7 @@ namespace TorlageProjectApp
                 connection4.Close();
             }
 
-            LabelUserAlreadyClickedAvailability.Text = "You entered that you were available. Are you available?";
+            //LabelUserAlreadyClickedAvailability.Text = "You entered that you were available. Are you available?";
         }
 
         protected void ButtonNo_Click(object sender, EventArgs e)
@@ -166,8 +239,8 @@ namespace TorlageProjectApp
                 "FROM PerformersAvailable " +
                 "INNER JOIN Performers " +
                 "ON PerformersAvailable.PerformerID = Performers.PerformerID " +
-                "WHERE PerformersAvailable.ScheduleDate = '" + TextBoxChangeAvailability.Text + "' And Performers.PerformerName = '"
-                + TextBoxUser.Text + "'";
+                "WHERE PerformersAvailable.ScheduleDate = '" + TextBoxChangeAvailability.Text + "' And Performers.PerformerID = '"
+                + userCurrentlyLoggedIn + "'";
             SqlCommand command = new SqlCommand(selectCommand, connection);
             connection.Open();
             SqlDataReader reader = null;
@@ -214,8 +287,8 @@ namespace TorlageProjectApp
                     "FROM PerformersAvailable " +
                     "INNER JOIN Performers " +
                     "ON PerformersAvailable.PerformerID = Performers.PerformerID " +
-                    "WHERE ScheduleDate = '" + TextBoxChangeAvailability.Text + "' AND Performers.PerformerName = '"
-                    + TextBoxUser.Text + "'";
+                    "WHERE ScheduleDate = '" + TextBoxChangeAvailability.Text + "' AND Performers.PerformerID = '"
+                    + userCurrentlyLoggedIn + "'";
                 SqlCommand command2 = new SqlCommand(updateCommand, connection2);
                 connection2.Open();
                 command2.ExecuteNonQuery();
@@ -229,7 +302,7 @@ namespace TorlageProjectApp
                 //establish an connection to the SQL server 
                 SqlConnection connection4 = new SqlConnection();
                 connection4.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
-                string selectQueryForUserName = "(SELECT PerformerID FROM Performers WHERE PerformerName = '" + TextBoxUser.Text + "' AND Performers.Active = 1)";
+                string selectQueryForUserName = "(SELECT PerformerID FROM Performers WHERE PerformerID = '" + userCurrentlyLoggedIn + "' AND Performers.Active = 1)";
                 string insertCommand = "INSERT INTO PerformersAvailable (ScheduleDate, PerformerID, Available, TentativeShow) VALUES('" + TextBoxChangeAvailability.Text + "', "
                     + selectQueryForUserName + ", 0, 0)";
                 SqlCommand command4 = new SqlCommand(insertCommand, connection4);
@@ -238,20 +311,12 @@ namespace TorlageProjectApp
                 connection4.Close();
             }
 
-            LabelUserAlreadyClickedAvailability.Text = "You entered that you were not available. Are you available?";
+            //LabelUserAlreadyClickedAvailability.Text = "You entered that you were not available. Are you available?";
 
         }
 
         protected void CalendarChanageAvailability_DayRender(object sender, DayRenderEventArgs e)
         {
-            string defaultUser = "Emma";
-            if(TextBoxUser.Text == "")
-            {
-                defaultUser = "Emma";
-            } else
-            {
-                defaultUser = TextBoxUser.Text;
-            }
             bool availability = false;
             bool tentativeshowDate = false;
 
@@ -277,8 +342,8 @@ namespace TorlageProjectApp
                 "FROM PerformersAvailable " +
                 "INNER JOIN Performers " +
                 "ON PerformersAvailable.PerformerID = Performers.PerformerID " +
-                "WHERE Performers.PerformerName = '"
-                + defaultUser + "'";
+                "WHERE Performers.PerformerID = '"
+                + userCurrentlyLoggedIn + "'";
             SqlCommand command = new SqlCommand(selectCommand, connection);
             connection.Open();
             SqlDataReader reader = null;

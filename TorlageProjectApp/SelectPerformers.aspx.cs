@@ -24,6 +24,72 @@ namespace TorlageProjectApp
         }
 
         /// <summary>
+        /// Displaying set shows in Green.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void CalendarShowDate_DayRender(object sender, DayRenderEventArgs e)
+        {
+
+            bool tentativeshowDate = false;
+
+            // Display Show Scheduled.
+            Style ShowExists = new Style();
+            ShowExists.BackColor = System.Drawing.Color.Green;
+            ShowExists.BorderColor = System.Drawing.Color.White;
+            ShowExists.BorderWidth = 3;
+
+            //establish an connection to the SQL server 
+            SqlConnection connection = new SqlConnection();
+            connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ToConnectionString"].ConnectionString;
+            string selectCommand = "SELECT Distinct ScheduleDate, TentativeShow " +
+                                    "FROM PerformersAvailable " +
+                                    "WHERE PerformersAvailable. TentativeShow = 1";
+            SqlCommand command = new SqlCommand(selectCommand, connection);
+            connection.Open();
+            SqlDataReader reader = null;
+            try
+            {
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    DateTime dateTime = (DateTime)reader["ScheduleDate"];
+                    byte value2 = (byte)reader["TentativeShow"];
+
+                    if (value2 == 1)
+                    {
+                        tentativeshowDate = true;
+                    }
+
+
+                    // do this somehow
+                    if ((e.Day.Date >= new DateTime(dateTime.Year, dateTime.Month, dateTime.Day)) &&
+                        (e.Day.Date <= new DateTime(dateTime.Year, dateTime.Month, dateTime.Day)))
+                    {
+                        if (tentativeshowDate)
+                        {
+                            e.Cell.ApplyStyle(ShowExists);
+                        }
+
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //LabelError.Text = "Caught Exception " + ex.ToString();
+            }
+            finally
+            {
+                reader.Close();
+                connection.Close();
+            }
+        }
+
+
+
+
+        /// <summary>
         /// displaying the available people for the show
         /// </summary>
         /// <param name="sender"></param>

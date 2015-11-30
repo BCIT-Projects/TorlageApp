@@ -2,7 +2,10 @@
 body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: #F0F0F0;
 }
+
+
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
@@ -10,6 +13,8 @@ body {
     padding-left: 15px;
     padding-right: 15px;
 }
+
+    </style>
 
 /* Set widths on the form inputs since otherwise they're 100% wide */
 input[type="text"],
@@ -27,3 +32,4 @@ input[type="email"] {
         padding: 0;
     }
 }
+

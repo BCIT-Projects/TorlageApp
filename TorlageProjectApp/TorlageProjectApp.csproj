@@ -39,6 +39,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.0.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
@@ -102,14 +110,8 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.Core">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Owin">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.0.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.0.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Providers">
       <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.2\lib\net40\System.Web.Providers.dll</HintPath>
@@ -163,7 +165,13 @@
     <Content Include="Content\Site.css" />
     <Content Include="CreateShowList.aspx" />
     <Content Include="Director.aspx" />
+    <Content Include="DirectorSelectPerformers.aspx" />
+    <Content Include="DirectorShow.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="ManageDirectorRole.aspx" />
+    <Content Include="ManagePerformers.aspx" />
+    <Content Include="ManageProfile.aspx" />
+    <Content Include="ManageRoles.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -171,10 +179,16 @@
     <Content Include="Account\Web.config" />
     <Content Include="ClassDiagram1.cd" />
     <Content Include="ClassDiagram2.cd" />
+    <None Include="Properties\PublishProfiles\Publish To File System.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Performers.aspx" />
+    <Content Include="PerformersNumbers.aspx" />
+    <Content Include="Resources\Torlage1.jpg" />
+    <Content Include="Resources\Torlage3.jpg" />
+    <Content Include="Resources\TorlageFinal.jpg" />
     <Content Include="ReviewShowList.aspx" />
     <Content Include="PerformersAvailability.aspx" />
-    <Content Include="PerformersNumbers.aspx" />
+    <Content Include="PerformersNumbers1.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -210,7 +224,9 @@
     <Content Include="SelectPerformers.aspx" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Bundle.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -326,12 +342,62 @@
     <Compile Include="Director.aspx.designer.cs">
       <DependentUpon>Director.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DirectorSelectPerformers.aspx.cs">
+      <DependentUpon>DirectorSelectPerformers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DirectorSelectPerformers.aspx.designer.cs">
+      <DependentUpon>DirectorSelectPerformers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DirectorShow.aspx.cs">
+      <DependentUpon>DirectorShow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DirectorShow.aspx.designer.cs">
+      <DependentUpon>DirectorShow.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ManageDirectorRole.aspx.cs">
+      <DependentUpon>ManageDirectorRole.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageDirectorRole.aspx.designer.cs">
+      <DependentUpon>ManageDirectorRole.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManagePerformers.aspx.cs">
+      <DependentUpon>ManagePerformers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManagePerformers.aspx.designer.cs">
+      <DependentUpon>ManagePerformers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageProfile.aspx.cs">
+      <DependentUpon>ManageProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageProfile.aspx.designer.cs">
+      <DependentUpon>ManageProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageRoles.aspx.cs">
+      <DependentUpon>ManageRoles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageRoles.aspx.designer.cs">
+      <DependentUpon>ManageRoles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="MySqlDataReader.cs" />
     <Compile Include="Pair.cs" />
+    <Compile Include="Performers.aspx.cs">
+      <DependentUpon>Performers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Performers.aspx.designer.cs">
+      <DependentUpon>Performers.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PerformersAvailability.aspx.cs">
       <DependentUpon>PerformersAvailability.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -346,7 +412,19 @@
     <Compile Include="PerformersNumbers.aspx.designer.cs">
       <DependentUpon>PerformersNumbers.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PerformersNumbers1.aspx.cs">
+      <DependentUpon>PerformersNumbers1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerformersNumbers1.aspx.designer.cs">
+      <DependentUpon>PerformersNumbers1.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="ReviewShowList.aspx.cs">
       <DependentUpon>ReviewShowList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -386,6 +464,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
